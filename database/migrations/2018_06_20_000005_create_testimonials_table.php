@@ -30,6 +30,11 @@ class CreateTestimonialsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+
+        $table->foreign('users_id', 'fk_testimonials_clients1_idx')
+        ->references('id')->on('clients')
+        ->onDelete('no action')
+        ->onUpdate('no action');
     }
 
     /**

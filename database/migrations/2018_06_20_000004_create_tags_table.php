@@ -29,7 +29,6 @@ class CreateTagsTable extends Migration
             $table->unsignedInteger('articles_id');
             $table->softDeletes();
             $table->timestamps();
-            
         });
     }
 

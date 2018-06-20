@@ -37,6 +37,11 @@ class CreateArticlesTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('no action')
                 ->onUpdate('no action');
+
+            $table->foreign('users_id', 'fk_articles_categories1_idx')
+            ->references('id')->on('categories')
+            ->onDelete('no action')
+            ->onUpdate('no action');
         });
     }
 
