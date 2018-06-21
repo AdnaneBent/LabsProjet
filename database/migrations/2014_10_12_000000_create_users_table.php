@@ -27,8 +27,8 @@ class CreateUsersTable extends Migration
             $table->string('name', 45);
             $table->string('mail', 45);
             $table->string('poste', 45)->nullable();
-            $table->integer('roles_id1');
-            $table->string('password', 30);
+            $table->unsignedInteger('roles_id1');
+            $table->string('password', 255);
             $table->softDeletes();
             $table->timestamps();
             

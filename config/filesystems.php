@@ -54,6 +54,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'imgCaroussel' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/imgCaroussel'),
+            'url' => env('APP_URL').'/storage/imgCaroussel',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',
