@@ -15,7 +15,7 @@
             <h3>{{$caroussel->name}}</h3>
             <img class="card-img-top mt-2" src="{{Storage::disk('imgCaroussel')->url($caroussel->image)}}" alt="Card image cap">
             <div class="card-body">
-                <h3>l'image du caroussels</h3><br>
+                <h3>l'image du carousel</h3><br>
             </div>
             <div class="card-body">
                 <a class="btn btn-primary" href="{{route('caroussels.edit',['caroussel'=>$caroussel->id])}}">Edité</a>

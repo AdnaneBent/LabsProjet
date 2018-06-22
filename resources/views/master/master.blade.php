@@ -13,7 +13,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700|Roboto:300,400,700" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="{{asset('css/app.css')}}"/>
+	<link rel="stylesheet" href="{{asset('theme/css/bootstrap.min.css')}}"/>
 	<link rel="stylesheet" href="{{asset('theme/css/font-awesome.min.css')}}"/>
 	<link rel="stylesheet" href="{{asset('theme/css/flaticon.css')}}"/>
 	<link rel="stylesheet" href="{{asset('theme/css/magnific-popup.css')}}"/>
