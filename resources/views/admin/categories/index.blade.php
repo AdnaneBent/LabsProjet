@@ -18,7 +18,6 @@
                 <a class="btn btn-primary" href="{{route('categories.edit',['categorie'=>$categorie->id])}}">Edité</a>
             </div>
             <form action="{{route('categories.destroy',['categorie'=>$categorie->id])}}" method="post">
-                
                 @method('DELETE')
                 @csrf
                 <button type="submit" class="btn btn-danger">Supprimer</button>

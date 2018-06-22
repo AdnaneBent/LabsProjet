@@ -64,7 +64,6 @@ class CategorieController extends Controller
     public function edit($id)
     {
         $categorie = Categorie::find($id);
-        //tu n'es qu'une sale merde
         return view('admin.categories.edit', compact('categorie'));
     }
 
@@ -93,7 +92,6 @@ class CategorieController extends Controller
     {
         $categorie = Categorie::find($id);
         $categorie->delete();
-
         return redirect()->route('categories.index');
 
     }
