@@ -13,6 +13,9 @@
     <div>
       <label for="name">
         Nom de l'image<br>
+        @if($errors->has('name'))
+          <div class="text-danger">{{ $errors->first('name')}}</div>
+        @endif
         <input type="text" name="name">
       </label><br>
       <img src="" alt="">

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreImgCaroussel extends FormRequest
+class StoreEditImgCaroussel extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,18 +25,13 @@ class StoreImgCaroussel extends FormRequest
     {
         return [
             'name'  =>  "required|max:45",
-            'image'  =>  'required|max:20000000',
         ];
     }
 
-        public  function  messages()
+    public  function  messages()
         {
         return[
         'name.required'  =>  "Il faut un nom d'image",
-        'name.max' => "Maximum :max caractères",
-        'image.required'  =>  "Il faut une image",
-        'image.max' => "L'image ne peut pas dépasser 20Mb",
             ];
         }
-    
 }
