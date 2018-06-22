@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Categorie;
+use App\Http\Requests\StoreCategorie;
 
 class CategorieController extends Controller
 {
@@ -13,7 +15,8 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Categorie::all();
+        return view("admin.categories.index",compact('categories'));
     }
 
     /**
@@ -23,7 +26,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.categories.create",compact('categories'));
     }
 
     /**
@@ -32,9 +35,13 @@ class CategorieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategorie $request)
     {
-        //
+        $categorie = new Categorie;
+        $categorie->name = $request->name;
+        $categorie->save();
+        return redirect()->route("categories.index");
+
     }
 
     /**
@@ -56,7 +63,9 @@ class CategorieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categorie = Categorie::find($id);
+        //tu n'es qu'une sale merde
+        return view('admin.categories.edit', compact('categorie'));
     }
 
     /**
@@ -66,9 +75,12 @@ class CategorieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCategorie $request, $id)
     {
-        //
+        $categorie = Categorie::find($id);
+        $categorie->name = $request->name;
+        $categorie->save();
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -79,6 +91,11 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categorie = Categorie::find($id);
+        $categorie->delete();
+
+        return redirect()->route('categories.index');
+
     }
+    
 }

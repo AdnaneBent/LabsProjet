@@ -27,6 +27,7 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+//tu n'es qu'une sale merde
 
 
 Auth::routes();
@@ -34,3 +35,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/admin/caroussels', 'CarousselController');
+Route::resource('/admin/categories', 'CategorieController');

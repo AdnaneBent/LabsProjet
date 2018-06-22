@@ -18,7 +18,7 @@ class CarousselController extends Controller
     public function index()
     {
         $caroussels = Caroussel::all();
-         return view("admin.caroussels.index",compact('caroussels'));
+        return view("admin.caroussels.index",compact('caroussels'));
     }
 
     /**

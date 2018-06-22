@@ -142,6 +142,11 @@ return [
             'icon'        => 'file',
         ],
         [
+            'text'        => 'Categorie',
+            'url'         => 'admin/categories',
+            'icon'        => 'file',
+        ],
+        [
             'text'        => 'Users',
             'url'         => 'admin/users',
             'icon'        => 'user',
