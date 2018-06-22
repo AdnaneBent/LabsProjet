@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Caroussel;
+use Storage;
 
 class CarousselController extends Controller
 {
@@ -13,7 +15,8 @@ class CarousselController extends Controller
      */
     public function index()
     {
-        //
+        $caroussels = Caroussel::all();
+         return view("admin.caroussels.index",compact('caroussels'));
     }
 
     /**
@@ -23,7 +26,7 @@ class CarousselController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.caroussels.create",compact('caroussels'));
     }
 
     /**
@@ -34,7 +37,12 @@ class CarousselController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $caroussel = new Caroussel;
+        $caroussel->name = $request->name;
+        $caroussel->image = $request->image->store('','imgCaroussel');
+        $caroussel->save();
+        return redirect()->route("caroussels.index");
+
     }
 
     /**
@@ -54,10 +62,11 @@ class CarousselController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Caroussel $caroussel)
     {
-        //
+         return view('admin.caroussels.edit', compact('caroussel'));
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -66,9 +75,14 @@ class CarousselController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Caroussel $caroussel)
     {
-        //
+        $caroussel->name = $request->name;
+        if ($request->image != null){
+            $caroussel->image = $request->image->store('','imgCaroussel');
+        }
+        $caroussel->save();
+        return redirect()->route('caroussels.index',['caroussel'=> $caroussel->id]);
     }
 
     /**
@@ -77,8 +91,12 @@ class CarousselController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Caroussel $caroussel)
     {
-        //
+        if($caroussel->delete())
+        {
+            Storage::disk('imgCaroussel')->delete($caroussel->image);
+            return redirect()->route('caroussels.index');
+        };
     }
 }

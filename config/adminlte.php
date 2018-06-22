@@ -122,8 +122,8 @@ return [
             'label_color' => 'success',
         ], */
         [
-            'text'        => 'Carousel',
-            'url'         => 'admin/carousel',
+            'text'        => 'Caroussel',
+            'url'         => 'admin/caroussels',
             'icon'        => 'image',
         ],
         [
