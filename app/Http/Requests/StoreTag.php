@@ -31,7 +31,7 @@ class StoreTag extends FormRequest
         public  function  messages()
         {
         return[
-            'name.required'  =>  "Il faut un nom de catégorie",
+            'name.required'  =>  "Il faut un nom de tag",
             'name.max' => "Maximum :max caractères",
             ];
         }
