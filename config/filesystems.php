@@ -66,6 +66,12 @@ return [
             'url' => env('APP_URL').'/storage/imgClient',
             'visibility' => 'public',
         ],
+        'imgService' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/imgService'),
+            'url' => env('APP_URL').'/storage/imgService',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',
