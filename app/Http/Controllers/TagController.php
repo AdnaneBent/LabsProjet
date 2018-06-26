@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Tag;
+use App\Http\Requests\StoreTag;
 
 class TagController extends Controller
 {
@@ -13,7 +15,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+        return view("admin.tags.index",compact('tags'));
     }
 
     /**
@@ -23,7 +26,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.tags.create",compact('tags'));
     }
 
     /**
@@ -32,9 +35,12 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTag $request)
     {
-        //
+        $tag = new Tag;
+        $tag->name = $request->name;
+        $tag->save();
+        return redirect()->route("tags.index");
     }
 
     /**
@@ -56,7 +62,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tag = Tag::find($id);
+        return view('admin.tags.edit', compact('tag'));
     }
 
     /**
@@ -66,9 +73,12 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTag $request, $id)
     {
-        //
+        $tag = Tag::find($id);
+        $tag->name = $request->name;
+        $tag->save();
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -79,6 +89,8 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tag = Tag::find($id);
+        $tag->delete();
+        return redirect()->route('tags.index');
     }
 }

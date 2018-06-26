@@ -146,6 +146,11 @@ return [
             'url'         => 'admin/categories',
             'icon'        => 'file',
         ],
+         [
+            'text'        => 'tags',
+            'url'         => 'admin/tags',
+            'icon'        => 'user',
+        ],
         [
             'text'        => 'Users',
             'url'         => 'admin/users',

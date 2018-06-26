@@ -25,8 +25,6 @@ class CreateTagsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name', 45);
-            $table->string('slug', 45);
-            $table->unsignedInteger('articles_id');
             $table->softDeletes();
             $table->timestamps();
         });
