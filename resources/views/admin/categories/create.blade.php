@@ -3,7 +3,7 @@
 @section('title', 'Caroussel')
 
 @section('content_header')
-<h1>Modification des Catégories</h1>
+<h1>Création d'une Catégories</h1>
 @stop
 
   @section('content')

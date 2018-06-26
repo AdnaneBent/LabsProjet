@@ -142,13 +142,18 @@ return [
             'icon'        => 'file',
         ],
         [
-            'text'        => 'Categorie',
+            'text'        => 'Categories',
             'url'         => 'admin/categories',
             'icon'        => 'file',
         ],
         [
             'text'        => 'Users',
             'url'         => 'admin/users',
+            'icon'        => 'user',
+        ],
+        [
+            'text'        => 'Clients',
+            'url'         => 'admin/clients',
             'icon'        => 'user',
         ],
         'ACCOUNT SETTINGS',

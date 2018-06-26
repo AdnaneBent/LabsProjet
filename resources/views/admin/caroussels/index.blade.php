@@ -4,6 +4,7 @@
 
 @section('content')
 
+<h2>Le carousel</h2>
 <div class="container">
     <a class="btn btn-dark" href="{{route('caroussels.create')}}">Ajouter une nouvelle image</a>
 </div>

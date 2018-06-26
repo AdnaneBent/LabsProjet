@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Client;
+use Storage;
+use App\Http\Requests\StoreClient;
+use App\Http\Requests\StoreEditClient;
 
 class ClientController extends Controller
 {
@@ -13,7 +17,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::all();
+        return view("admin.clients.index",compact('clients'));
     }
 
     /**
@@ -23,7 +28,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.clients.create",compact('clients '));
     }
 
     /**
@@ -32,9 +37,14 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreClient $request)
     {
-        //
+        $client = new Client;
+        $client->name = $request->name;
+        $client->company = $request->company;
+        $client->image = $request->image->store('','imgClient');
+        $client->save();
+        return redirect()->route("clients.index");
     }
 
     /**
@@ -54,9 +64,9 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Client $client)
     {
-        //
+        return view('admin.clients.edit', compact('client'));
     }
 
     /**
@@ -66,9 +76,17 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreEditClient $request , Client $client)
     {
-        //
+        
+        $client->name = $request->name;
+        $client->company = $request->company;
+        if ($client->image != null)
+        {
+            $client->image = $request->image->store('','imgClient');
+        }
+        $client->save();
+        return redirect()->route('clients.index',['client'=> $client->id]);
     }
 
     /**
@@ -79,6 +97,8 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $client = Client::find($id);
+        $client->delete();
+        return redirect()->route('clients.index');
     }
 }
