@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Caroussel')
+@section('title', 'Categorie')
 
 @section('content_header')
 <h1>Création d'une Catégories</h1>
@@ -16,7 +16,7 @@
         @if($errors->has('name'))
           <div class="text-danger">{{ $errors->first('name')}}</div>
         @endif
-        <input type="text" name="name">
+        <input type="text" name="name" value="{{old('name')}}">
       </label><br>
       <button type="submit" class="btn btn-info">Enregistrer</button>
     </div><br>

@@ -81,6 +81,8 @@ class CarousselController extends Controller
     {
         $caroussel->name = $request->name;
         if ($request->image != null){
+
+            Storage::disk('imgCaroussel')->delete($caroussel)->image;
             $caroussel->image = $request->image->store('','imgCaroussel');
         }
         $caroussel->save();

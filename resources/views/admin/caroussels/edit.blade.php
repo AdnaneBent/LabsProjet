@@ -16,7 +16,7 @@
         @if($errors->has('name'))
           <div class="text-danger">{{ $errors->first('name')}}</div>
         @endif
-        <input type="text" name="name">
+        <input type="text" name="name" value="{{old('name', $caroussel->name)}}">
       </label><br>
       <img src="" alt="">
       <input class="pb-2" name="image" type="file"><br>

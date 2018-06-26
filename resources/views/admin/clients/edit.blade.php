@@ -16,14 +16,14 @@
         @if($errors->has('name'))
           <div class="text-danger">{{ $errors->first('name')}}</div>
         @endif
-        <input type="text" name="name">
+        <input type="text" name="name" value="{{old('name', $client->name)}}">
       </label><br>
       <label for="company">
         Nom de la compagnie :<br>
         @if($errors->has('company'))
           <div class="text-danger">{{ $errors->first('company')}}</div>
         @endif
-        <input type="text" name="company">
+        <input type="text" name="company" value="{{old('company', $client->company)}}">
       </label><br>
       <img src="" alt="">
       <input class="pb-2" name="image" type="file"><br>

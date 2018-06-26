@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Projet;
+use Storage;
+use App\Http\Requests\StoreProjet;
+use App\Http\Requests\StoreEditProjet;
 
 class ProjetController extends Controller
 {
@@ -13,7 +17,8 @@ class ProjetController extends Controller
      */
     public function index()
     {
-        //
+        $projets = Projet::all();
+        return view("admin.projets.index",compact('projets'));
     }
 
     /**
@@ -23,7 +28,7 @@ class ProjetController extends Controller
      */
     public function create()
     {
-        //
+         return view("admin.projets.create",compact('projets '));
     }
 
     /**
@@ -32,9 +37,14 @@ class ProjetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjet $request)
     {
-        //
+        $projet = new Projet;
+        $projet->name = $request->name;
+        $projet->contenu = $request->contenu;
+        $projet->image = $request->image->store('','imgProjet');
+        $projet->save();
+        return redirect()->route("projets.index");
     }
 
     /**
@@ -54,10 +64,11 @@ class ProjetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Projet $projet)
     {
-        //
+        return view('admin.projets.edit', compact('projet'));
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -66,9 +77,18 @@ class ProjetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreEditProjet $request, Projet $projet)
     {
-        //
+        $projet->name = $request->name;
+        $projet->contenu = $request->contenu;
+        if ($request->image != null)
+        {
+            Storage::disk('imgProjet')->delete($projet)->image;
+            $projet->image = $request->image->store('','imgProjet');
+    
+        }
+        $projet->save();
+        return redirect()->route('projets.index',['projet'=> $projet->id]);
     }
 
     /**
@@ -79,6 +99,8 @@ class ProjetController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $projet = Projet::find($id);
+        $projet->delete();
+        return redirect()->route('projets.index');
     }
 }

@@ -81,8 +81,9 @@ class ClientController extends Controller
         
         $client->name = $request->name;
         $client->company = $request->company;
-        if ($client->image != null)
+        if ($request->image != null)
         {
+            Storage::disk('imgClient')->delete($client)->image;
             $client->image = $request->image->store('','imgClient');
         }
         $client->save();

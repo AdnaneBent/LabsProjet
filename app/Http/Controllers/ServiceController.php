@@ -80,8 +80,9 @@ class ServiceController extends Controller
     {
         $service->name = $request->name;
         $service->contenu = $request->contenu;
-        if ($service->image != null)
+        if ($request->image != null)
         {
+            Storage::disk('imgService')->delete($service)->image;
             $service->image = $request->image->store('','imgService');
         }
         $service->save();

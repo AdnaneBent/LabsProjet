@@ -13,7 +13,7 @@
     <div>
       <label for="name">
         Nom de l'image<br>
-        <input type="text" name="name">
+        <input type="text" name="name" value="{{old('name')}}">
         @if($errors->has('name'))
           <div class="text-danger">{{ $errors->first('name')}}</div>
         @endif
