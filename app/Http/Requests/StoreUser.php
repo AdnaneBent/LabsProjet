@@ -26,7 +26,7 @@ class StoreUser extends FormRequest
         return [
             'name'  =>  "required|max:45",
             'password' => 'required|max:255',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:users,id,'.$this->user->id,
             'poste' => 'max:45',
             'image'  =>  'max:20000000',
             'role' => 'exists'
