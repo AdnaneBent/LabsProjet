@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
 Route::get('/services', function () {
     return view('services');
 })->name('services');
@@ -43,3 +39,4 @@ Route::resource('/admin/tags', 'TagController');
 Route::resource('/admin/testimonials', 'TestimonialController');
 Route::resource('/admin/articles', 'ArticleController');
 Route::resource('/admin/users', 'UserController');
+Route::get('/', 'FrontController@welcome')->name('welcome');
