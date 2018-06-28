@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Article;
+use App\User;
 
 class ArticleController extends Controller
 {
@@ -13,7 +15,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::all()->sortByDesc('created_at');
+        $user = User::all();
+        return view("admin.articles.index",compact('articles', 'user'));
     }
 
     /**
@@ -23,7 +27,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        return view("admin.Users.create",compact('users'));
     }
 
     /**
@@ -34,7 +39,12 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = new Article;
+        $article->contenu = $request->contenu;
+        $article->users_id = $request->users_id;
+        $article->save();
+
+        return redirect()->route('users.index');
     }
 
     /**

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Testimonial;
+use App\Client;
+use Storage;
+use App\Http\Requests\StoreTestimonial;
+
 
 class TestimonialController extends Controller
 {
@@ -13,7 +18,9 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        //
+        $testimonials = Testimonial::all()->sortByDesc('created_at');
+        $client = Client::all();
+        return view("admin.testimonials.index",compact('testimonials', 'client'));
     }
 
     /**
@@ -23,7 +30,8 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::all();
+        return view("admin.testimonials.create",compact('clients'));
     }
 
     /**
@@ -32,9 +40,14 @@ class TestimonialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTestimonial $request)
     {
-        //
+        $testimonial = new Testimonial;
+        $testimonial->contenu = $request->contenu;
+        $testimonial->clients_id = $request->clients_id;
+        $testimonial->save();
+
+        return redirect()->route('testimonials.index');
     }
 
     /**
@@ -43,10 +56,11 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Testimonial $testimonial)
     {
-        //
+        return view("admin.testimonials.show",compact('testimonial'));
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -54,9 +68,10 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Testimonial $testimonial)
     {
-        //
+        $clients= Client::all();
+        return view('admin.testimonials.edit', compact('testimonial', 'clients'));
     }
 
     /**
@@ -66,9 +81,12 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTestimonial $request, Testimonial $testimonial)
     {
-        //
+        $testimonial->contenu = $request->contenu;
+        $testimonial->clients_id = $request->clients_id;
+        $testimonial->save();
+        return redirect()->route('testimonials.show',['testimonial'=> $testimonial->id]);
     }
 
     /**
@@ -79,6 +97,8 @@ class TestimonialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $testimonial = Testimonial::find($id);
+        $testimonial->delete();
+        return redirect()->route('testimonials.index');
     }
 }

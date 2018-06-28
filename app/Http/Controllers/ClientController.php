@@ -83,7 +83,7 @@ class ClientController extends Controller
         $client->company = $request->company;
         if ($request->image != null)
         {
-            Storage::disk('imgClient')->delete($client)->image;
+            Storage::disk('imgClient')->delete($client->image);
             $client->image = $request->image->store('','imgClient');
         }
         $client->save();
@@ -99,6 +99,7 @@ class ClientController extends Controller
     public function destroy($id)
     {
         $client = Client::find($id);
+        Storage::disk('imgClient')->delete($client->image);
         $client->delete();
         return redirect()->route('clients.index');
     }

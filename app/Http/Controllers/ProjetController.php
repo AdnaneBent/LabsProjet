@@ -28,7 +28,7 @@ class ProjetController extends Controller
      */
     public function create()
     {
-         return view("admin.projets.create",compact('projets '));
+        return view("admin.projets.create",compact('projets '));
     }
 
     /**

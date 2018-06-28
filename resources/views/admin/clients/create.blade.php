@@ -8,7 +8,7 @@
 
   @section('content')
   <form action="{{route('clients.store')}}" method="post" enctype="multipart/form-data">
-
+  @method('POST')
   @csrf
     <div>
       <label for="name">
