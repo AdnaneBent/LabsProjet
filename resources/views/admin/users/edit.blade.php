@@ -32,6 +32,13 @@
         @endif
         <input type="text" name="password" value="{{old('password')}}">
       </label><br>
+      <label for="poste">
+        Poste:<br>
+        @if($errors->has('poste'))
+          <div class="text-danger">{{ $errors->first('poste')}}</div>
+        @endif
+        <input type="text" name="poste" value="{{old('poste')}}">
+      </label><br>
         <div class="form-group w-25">
         <label for="role_id">Role :</label>
         <select name="roles_id1" id="role_id" class="w-50 form-control">

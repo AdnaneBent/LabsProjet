@@ -157,38 +157,33 @@
 				<!-- Single widget -->
 				<div class="widget-item">
 					<h2 class="widget-title">Tags</h2>
+					@foreach($tags as $tag)
 					<ul class="tag">
 						<li>
-							<a href="">branding</a>
-						</li>
-						<li>
-							<a href="">identity</a>
-						</li>
-						<li>
-							<a href="">video</a>
-						</li>
-						<li>
-							<a href="">design</a>
-						</li>
-						<li>
-							<a href="">inspiration</a>
-						</li>
-						<li>
-							<a href="">web design</a>
-						</li>
-						<li>
-							<a href="">photography</a>
+							<a href="">{{$tag->name}}</a>
 						</li>
 					</ul>
+					@endforeach
 				</div>
 				<!-- Single widget -->
 				<div class="widget-item">
 					<h2 class="widget-title">Quote</h2>
-					<div class="quote">
-						<span class="quotation">‘​‌‘​‌</span>
-						<p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat.
-							Donec fermen tum convallis ante eget tristique. Sed lacinia turpis at ultricies vestibulum.</p>
+					@foreach($testimonials as $testimonial)
+					<!-- single testimonial -->
+					<div class="testimonial">
+						<span>‘​‌‘​‌</span>
+						<p>{{$testimonial->contenu}}</p>
+						<div class="client-info">
+							<div class="avatar">
+								<img src="{{Storage::disk('imgClient')->url($testimonial->client->image)}}" alt="{{$testimonial->client->name}}" alt="">
+							</div>
+							<div class="client-name">
+								<h2>{{$testimonial->client->name}}</h2>
+								<p>{{$testimonial->client->company}}</p>
+							</div>
+						</div>
 					</div>
+					@endforeach
 				</div>
 			</div>
 		</div>

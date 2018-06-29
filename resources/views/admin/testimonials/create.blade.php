@@ -15,12 +15,12 @@
         @if($errors->has('contenu'))
           <div class="text-danger">{{ $errors->first('contenu')}}</div>
         @endif
-        <textarea name="contenu" for="contenu">{{old('contenu')}}</textarea>
+        <textarea class="w-25" name="contenu" for="contenu">{{old('contenu')}}</textarea>
         <br>
         <div class="box-body">
             <div class="form-group w-25">
                 <label for="client_id"><h3>Client</h3></label>
-                <select name="clients_id" id="client_id" class="w-25 form-control">
+                <select name="clients_id" id="client_id" class="w-50 form-control">
                     @foreach($clients as $client)
                     <option value="{{$client->id}}">{{$client->name}}</option>
                     @endforeach

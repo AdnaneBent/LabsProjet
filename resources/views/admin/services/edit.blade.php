@@ -18,16 +18,16 @@
         @endif
         <input type="text" name="name" value="{{old('name', $service->name)}}">
       </label><br>
-      <label for="contenu">  
+      <label for="contenu">  </label>
         <h5>Contenu :</h5>
         @if($errors->has('contenu'))
           <div class="text-danger">{{ $errors->first('contenu')}}</div>
         @endif
-        <textarea name="contenu">{{old('contenu', $service->contenu)}}</textarea>
-        </label>
+        <textarea class="w-25" name="contenu">{{old('contenu', $service->contenu)}}</textarea>
+        
         <br>
-      <img src="" alt="">
-      <input class="pb-2" name="image" type="file"><br>
+        <h5>Le flaticon</h5>
+      <input class="pb-2" name="image" type="text"><br>
       <br>
       <button type="submit" class="btn btn-info">Enregistrer</button>
     </div>

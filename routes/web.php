@@ -11,13 +11,8 @@
 |
 */
 
-Route::get('/services', function () {
-    return view('services');
-})->name('services');
 
-Route::get('/blog', function () {
-    return view('blog');
-})->name('blog');
+
 
 Route::get('/contact', function () {
     return view('contact');
@@ -38,3 +33,5 @@ Route::resource('/admin/testimonials', 'TestimonialController');
 Route::resource('/admin/articles', 'ArticleController');
 Route::resource('/admin/users', 'UserController');
 Route::get('/', 'FrontController@welcome')->name('welcome');
+Route::get('/services', 'FrontController@service')->name('services');
+Route::get('/blogs', 'FrontController@blog')->name('blog');

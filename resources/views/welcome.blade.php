@@ -31,7 +31,7 @@
 				<div class="col-md-4 col-sm-6">
 					<div class="lab-card">
 						<div class="icon">
-							<i class="flaticon-023-flask"></i>
+							<i class="{{$service->image}}"></i>
 						</div>
 						<h2>{{$service->name}}</h2>
 						<p>{{$service->contenu}}</p>
@@ -93,7 +93,7 @@
 					<h2>What our clients say</h2>
 				</div>
 				<div class="owl-carousel" id="testimonial-slide">
-						@foreach($testimonials as $testimonial)
+					@foreach($testimonials as $testimonial)
 					<!-- single testimonial -->
 					<div class="testimonial">
 						<span>‘​‌‘​‌</span>

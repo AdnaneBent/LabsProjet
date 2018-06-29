@@ -26,7 +26,7 @@ class CreateProjetsTable extends Migration
             $table->increments('id');
             $table->string('name', 45);
             $table->string('image', 45);
-            $table->string('contenu', 45);
+            $table->string('contenu', 255);
             $table->softDeletes();
             $table->timestamps();
         });

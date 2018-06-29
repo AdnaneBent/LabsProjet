@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 255);
             $table->softDeletes();
             $table->timestamps();
+            $table->rememberToken();
             
 
             $table->index(["roles_id1"], 'fk_users_roles_idx');

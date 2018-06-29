@@ -9,7 +9,7 @@
             <div class="card-body"></div>
         <div class="card-body">
             <h3>Nom d'utilisateur : {{$user->name}}</h3>
-            <h3>Poste : {{$user->poste}}</h3>
+            <h3 class="bg-info">Poste : {{$user->poste}}</h3>
             <p class="card-text">{{$user->email}}</p>
         </div>
         <div class="row">

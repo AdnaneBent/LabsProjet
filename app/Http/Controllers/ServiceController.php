@@ -42,7 +42,7 @@ class ServiceController extends Controller
         $service = new Service;
         $service->name = $request->name;
         $service->contenu = $request->contenu;
-        $service->image = $request->image->store('','imgService');
+        $service->image = $request->image;
         $service->save();
         return redirect()->route("services.index");
     }
@@ -82,8 +82,7 @@ class ServiceController extends Controller
         $service->contenu = $request->contenu;
         if ($request->image != null)
         {
-            Storage::disk('imgService')->delete($service)->image;
-            $service->image = $request->image->store('','imgService');
+            $service->image = $request->image;
         }
         $service->save();
         return redirect()->route('services.index',['service'=> $service->id]);

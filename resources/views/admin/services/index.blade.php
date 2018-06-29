@@ -15,7 +15,7 @@
         <div class="card col-3 m-4" style="width: 18rem;">
 
             <h3>Nom du service : {{$service->name}}</h3>
-            <img class="card-img-top mt-2" src="{{Storage::disk('imgService')->url($service->image)}}" alt="Card image cap">
+        <h2><i class="{{$service->image}}"></i></h2>
             <div class="card-body">
                 <h3>contenu : <br>{{$service->contenu}}</h3>
             </div>

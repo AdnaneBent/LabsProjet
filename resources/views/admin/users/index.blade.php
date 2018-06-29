@@ -20,7 +20,7 @@
                 <a class="btn btn-primary" href="{{route('users.show',['user'=>$user->id])}}">Voir</a>
             </div>
             <h3>{{$user->role->name}}<br>
-            {{$user->poste}}
+            <h2 class="bg-info">{{$user->poste}}</h2>
             </h3>
         </div>
         @endforeach

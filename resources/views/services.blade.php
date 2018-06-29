@@ -16,7 +16,7 @@
 </div>
 <!-- Page header end-->
 
-@include('components.services')
+@include('components.services', $services)
 
 <!-- features section -->
 <div class="team-section spad">
@@ -28,35 +28,17 @@
     <div class="row">
       <!-- feature item -->
       <div class="col-md-4 col-sm-4 features">
+        @foreach($servicesRandom1 as $service)
         <div class="icon-box light left">
           <div class="service-text">
-            <h2>Get in the lab</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
+            <h2>{{$service->name}}</h2>
+            <p>{{$service->contenu}}</p>
           </div>
           <div class="icon">
-            <i class="flaticon-002-caliper"></i>
+            <i class="{{$service->image}}"></i>
           </div>
         </div>
-        <!-- feature item -->
-        <div class="icon-box light left">
-          <div class="service-text">
-            <h2>Projects online</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-          </div>
-          <div class="icon">
-            <i class="flaticon-019-coffee-cup"></i>
-          </div>
-        </div>
-        <!-- feature item -->
-        <div class="icon-box light left">
-          <div class="service-text">
-            <h2>SMART MARKETING</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-          </div>
-          <div class="icon">
-            <i class="flaticon-020-creativity"></i>
-          </div>
-        </div>
+        @endforeach
       </div>
       <!-- Devices -->
       <div class="col-md-4 col-sm-4 devices">
@@ -66,40 +48,22 @@
       </div>
       <!-- feature item -->
       <div class="col-md-4 col-sm-4 features">
+          @foreach($servicesRandom2 as $service)
         <div class="icon-box light">
           <div class="icon">
-            <i class="flaticon-037-idea"></i>
+            <i class="{{$service->image}}"></i>
           </div>
           <div class="service-text">
-            <h2>Get in the lab</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
+            <h2>{{$service->name}}</h2>
+            <p>{{$service->contenu}}</p>
           </div>
         </div>
-        <!-- feature item -->
-        <div class="icon-box light">
-          <div class="icon">
-            <i class="flaticon-025-imagination"></i>
-          </div>
-          <div class="service-text">
-            <h2>Projects online</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-          </div>
-        </div>
-        <!-- feature item -->
-        <div class="icon-box light">
-          <div class="icon">
-            <i class="flaticon-008-team"></i>
-          </div>
-          <div class="service-text">
-            <h2>SMART MARKETING</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
-    <div class="text-center mt100">
-      <a href="" class="site-btn">Browse</a>
-    </div>
+        <div class="text-center mt100">
+          <a href="" class="site-btn">Browse</a>
+        </div>
   </div>
 </div>
 <!-- features section end-->
@@ -109,43 +73,22 @@
 <div class="services-card-section spad">
   <div class="container">
     <div class="row">
+      @foreach($projets as $projet)
       <!-- Single Card -->
       <div class="col-md-4 col-sm-6">
         <div class="sv-card">
           <div class="card-img">
-            <img src="{{asset('theme/img/card-1.jpg')}}" alt="">
+            <img src="{{Storage::disk('imgProjet')->url($projet->image)}}" alt="">
           </div>
           <div class="card-text">
-            <h2>Get in the lab</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
+            <h2>{{$projet->name}}</h2>
+            <p>{{$projet->contenu}}</p>
           </div>
         </div>
       </div>
-      <!-- Single Card -->
-      <div class="col-md-4 col-sm-6">
-        <div class="sv-card">
-          <div class="card-img">
-            <img src="{{asset('theme/img/card-2.jpg')}}" alt="">
-          </div>
-          <div class="card-text">
-            <h2>Projects online</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-          </div>
-        </div>
-      </div>
-      <!-- Single Card -->
-      <div class="col-md-4 col-sm-12">
-        <div class="sv-card">
-          <div class="card-img">
-            <img src="{{asset('theme/img/card-3.jpg')}}" alt="">
-          </div>
-          <div class="card-text">
-            <h2>SMART MARKETING</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-          </div>
-        </div>
-      </div>
+      @endforeach
     </div>
+    <div>{{$projets->links()}}</div>
   </div>
 </div>
 <!-- services card section end-->

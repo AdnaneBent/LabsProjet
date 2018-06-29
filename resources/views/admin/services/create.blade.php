@@ -22,13 +22,13 @@
         @if($errors->has('contenu'))
           <div class="text-danger">{{ $errors->first('contenu')}}</div>
         @endif
-        <textarea name="contenu" for="contenu">{{old('contenu')}}</textarea>
+        <textarea class="w-25" name="contenu" for="contenu">{{old('contenu')}}</textarea>
         <br>
-        <img src="" alt="">
         @if($errors->has('image'))
             <div class="text-danger">{{ $errors->first('image')}}</div>
         @endif
-        <input class="pb-2" name="image" type="file"><br>
+        <h5>Le flaticon</h5>
+        <input class="pb-2" name="image" type="text"><br>
         <button type="submit" class="btn btn-info">Enregistrer</button>
     </div><br>
     <div class="card-body">
