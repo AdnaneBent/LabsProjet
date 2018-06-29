@@ -25,7 +25,7 @@ class CreateServicesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name', 45);
-            $table->string('contenu', 45);
+            $table->string('contenu', 255);
             $table->string('image', 45);
             $table->softDeletes();
             $table->timestamps();

@@ -23,8 +23,6 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-//tu n'es qu'une sale merde
-
 
 Auth::routes();
 

@@ -30,7 +30,7 @@
         @if($errors->has('password'))
           <div class="text-danger">{{ $errors->first('password')}}</div>
         @endif
-        <input type="text" name="password"">
+        <input type="text" name="password">
       </label><br>
       <label for="poste">
         Poste:<br>

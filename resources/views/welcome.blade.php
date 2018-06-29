@@ -26,39 +26,18 @@
 	<div class="card-section">
 		<div class="container">
 			<div class="row">
+				@foreach($servicesRandom as $service)
 				<!-- single card -->
 				<div class="col-md-4 col-sm-6">
 					<div class="lab-card">
 						<div class="icon">
 							<i class="flaticon-023-flask"></i>
 						</div>
-						<h2>Get in the lab</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..
-						</p>
+						<h2>{{$service->name}}</h2>
+						<p>{{$service->contenu}}</p>
 					</div>
 				</div>
-				<!-- single card -->
-				<div class="col-md-4 col-sm-6">
-					<div class="lab-card">
-						<div class="icon">
-							<i class="flaticon-011-compass"></i>
-						</div>
-						<h2>Projects online</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..
-						</p>
-					</div>
-				</div>
-				<!-- single card -->
-				<div class="col-md-4 col-sm-12">
-					<div class="lab-card">
-						<div class="icon">
-							<i class="flaticon-037-idea"></i>
-						</div>
-						<h2>SMART MARKETING</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..
-						</p>
-					</div>
-				</div>
+				@endforeach
 			</div>
 		</div>
 	</div>
@@ -114,96 +93,22 @@
 					<h2>What our clients say</h2>
 				</div>
 				<div class="owl-carousel" id="testimonial-slide">
+						@foreach($testimonials as $testimonial)
 					<!-- single testimonial -->
 					<div class="testimonial">
 						<span>‘​‌‘​‌</span>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla.
-							Nulla sit amet luctus dolor. Etiam finibus consequa.</p>
+						<p>{{$testimonial->contenu}}</p>
 						<div class="client-info">
 							<div class="avatar">
-								<img src="{{asset('theme/img/avatar/01.jpg')}}" alt="">
+								<img src="{{Storage::disk('imgClient')->url($testimonial->client->image)}}" alt="{{$testimonial->client->name}}" alt="">
 							</div>
 							<div class="client-name">
-								<h2>Michael Smith</h2>
-								<p>CEO Company</p>
+								<h2>{{$testimonial->client->name}}</h2>
+								<p>{{$testimonial->client->company}}</p>
 							</div>
 						</div>
 					</div>
-					<!-- single testimonial -->
-					<div class="testimonial">
-						<span>‘​‌‘​‌</span>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla.
-							Nulla sit amet luctus dolor. Etiam finibus consequa.</p>
-						<div class="client-info">
-							<div class="avatar">
-								<img src="{{asset('theme/img/avatar/02.jpg')}}" alt="">
-							</div>
-							<div class="client-name">
-								<h2>Michael Smith</h2>
-								<p>CEO Company</p>
-							</div>
-						</div>
-					</div>
-					<!-- single testimonial -->
-					<div class="testimonial">
-						<span>‘​‌‘​‌</span>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla.
-							Nulla sit amet luctus dolor. Etiam finibus consequa.</p>
-						<div class="client-info">
-							<div class="avatar">
-								<img src="{{asset('theme/img/avatar/01.jpg')}}" alt="">
-							</div>
-							<div class="client-name">
-								<h2>Michael Smith</h2>
-								<p>CEO Company</p>
-							</div>
-						</div>
-					</div>
-					<!-- single testimonial -->
-					<div class="testimonial">
-						<span>‘​‌‘​‌</span>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla.
-							Nulla sit amet luctus dolor. Etiam finibus consequa.</p>
-						<div class="client-info">
-							<div class="avatar">
-								<img src="{{asset('theme/img/avatar/02.jpg')}}" alt="">
-							</div>
-							<div class="client-name">
-								<h2>Michael Smith</h2>
-								<p>CEO Company</p>
-							</div>
-						</div>
-					</div>
-					<!-- single testimonial -->
-					<div class="testimonial">
-						<span>‘​‌‘​‌</span>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla.
-							Nulla sit amet luctus dolor. Etiam finibus consequa.</p>
-						<div class="client-info">
-							<div class="avatar">
-								<img src="{{asset('theme/img/avatar/01.jpg')}}" alt="">
-							</div>
-							<div class="client-name">
-								<h2>Michael Smith</h2>
-								<p>CEO Company</p>
-							</div>
-						</div>
-					</div>
-					<!-- single testimonial -->
-					<div class="testimonial">
-						<span>‘​‌‘​‌</span>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla.
-							Nulla sit amet luctus dolor. Etiam finibus consequa.</p>
-						<div class="client-info">
-							<div class="avatar">
-								<img src="{{asset('theme/img/avatar/02.jpg')}}" alt="">
-							</div>
-							<div class="client-name">
-								<h2>Michael Smith</h2>
-								<p>CEO Company</p>
-							</div>
-						</div>
-					</div>
+					@endforeach
 				</div>
 			</div>
 		</div>
@@ -211,7 +116,7 @@
 </div>
 <!-- Testimonial section end-->
 
-@include('components.services')
+@include('components.services', $services)
 
 <!-- Team Section -->
 <div class="team-section spad">
@@ -262,7 +167,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="promo-btn-area">
-					<a href="" class="site-btn btn-2">Browse</a>
+					<a href="{{route('blog')}}" class="site-btn btn-2">Browse</a>
 				</div>
 			</div>
 		</div>
