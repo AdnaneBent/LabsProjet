@@ -21,7 +21,13 @@
         @if($errors->has('contenu'))
           <div class="text-danger">{{ $errors->first('contenu')}}</div>
         @endif
-        <textarea name="contenu" for="contenu">{{old('contenu')}}</textarea>
+        <textarea class="w-25" name="contenu" for="contenu">{{old('contenu')}}</textarea>
+        <br>
+        <h5>Catégorie</h5>
+        @if($errors->has('categories'))
+          <div class="text-danger">{{ $errors->first('categories')}}</div>
+        @endif
+        <input name="categories" for="categories">{{old('categories')}}</input>
         <br>
         <img src="" alt="">
         @if($errors->has('image'))

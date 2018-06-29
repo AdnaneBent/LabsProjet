@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use App\User;
+use App\Role;
 
 class ArticleController extends Controller
 {
@@ -27,8 +28,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        $roles = Role::all();
         $users = User::all();
-        return view("admin.Users.create",compact('users'));
+        return view("admin.articles.create",compact('users', 'roles'));
     }
 
     /**

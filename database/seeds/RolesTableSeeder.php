@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Role;
 
 class RolesTableSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class RolesTableSeeder extends Seeder
             'slug' => 'admin',
             'name' => 'Administrateur',
         ]);
-        DB::table('roles')->insert([
+            DB::table('roles')->insert([
             'slug' => 'user',
             'name' => 'Utilisateur',
         ]);
