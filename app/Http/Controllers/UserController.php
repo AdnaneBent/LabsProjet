@@ -89,7 +89,10 @@ class UserController extends Controller
     public function update(StoreUser $request, User $user)
     {
         $user->name = $request->name;
-        $user->password = $request->password;
+        if($request->password != NULL)
+        {
+            $user->password = bcrypt($request->password);
+        }
         if($request->image != NULL){
             $user->image = $request->image->store('','imgUser');
         }

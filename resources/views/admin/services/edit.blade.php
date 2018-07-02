@@ -27,7 +27,7 @@
         
         <br>
         <h5>Le flaticon</h5>
-      <input class="pb-2" name="image" type="text"><br>
+      <input class="pb-2" value="{{old('image', $service->image)}}" name="image" type="text"><br>
       <br>
       <button type="submit" class="btn btn-info">Enregistrer</button>
     </div>

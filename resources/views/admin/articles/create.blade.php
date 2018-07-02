@@ -10,29 +10,44 @@
   <form action="{{route('articles.store')}}" method="post" enctype="multipart/form-data">
   @method('POST')
   @csrf
-    <div>
+    <div class="text-center">
         <h5>Titre de l'article</h5>
         @if($errors->has('titre'))
           <div class="text-danger">{{ $errors->first('titre')}}</div>
         @endif
-        <input name="titre" for="titre">{{old('titre')}}</input>
+        <input name="titre" for="titre">{{old('titre')}}<br>
         <br>
         <h5>Contenu de l'article</h5>
         @if($errors->has('contenu'))
           <div class="text-danger">{{ $errors->first('contenu')}}</div>
         @endif
-        <textarea class="w-25" name="contenu" for="contenu">{{old('contenu')}}</textarea>
+        <textarea class="w-25" name="contenu" for="contenu">{{old('contenu')}}</textarea><br>
         <br>
-        <h5>Catégorie</h5>
-        @if($errors->has('categories'))
-          <div class="text-danger">{{ $errors->first('categories')}}</div>
+         <label for="categorie_id"><h3>Categorie</h3></label>
+              <select name="categories_id" id="categorie_id" class="w-50 form-control mx-auto">
+              @foreach($categories as $categorie)
+              <option value="{{$categorie->id}}">{{$categorie->name}}</option>
+              @endforeach
+            </select>
+        <br>
+        <h5>Tags</h5>
+        @if($errors->has('tags_id'))
+          <div class="text-danger">{{ $errors->first('tags_id')}}</div>
         @endif
-        <input name="categories" for="categories">{{old('categories')}}</input>
-        <br>
+
+        <div class="form-check">
+          @foreach($tags as $tag)
+          <label class="form-check-label m-3">
+            <input type="checkbox" class="form-check-input" name="tag_id[]" id="tag" value="{{$tag->id}}">
+            {{$tag->name}}
+          </label>
+          @endforeach
+        </div>
         <img src="" alt="">
         @if($errors->has('image'))
             <div class="text-danger">{{ $errors->first('image')}}</div>
         @endif
+        <h5>Image</h5>
         <input class="pb-2" name="image" type="file"><br>
         <button type="submit" class="btn btn-info">Enregistrer</button>
     </div><br>

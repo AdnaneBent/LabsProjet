@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    public function users(){
+    public function user(){
     return $this->belongsTo('App\User','users_id','id');
 
     }
@@ -16,8 +16,8 @@ class Article extends Model
 
     }
 
-    public function categories(){
-    return $this->belongsTo('App\categorie','categories_id','id');
+    public function categorie(){
+    return $this->belongsTo('App\Categorie','categories_id','id');
 
     }
 

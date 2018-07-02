@@ -30,14 +30,14 @@
         @if($errors->has('password'))
           <div class="text-danger">{{ $errors->first('password')}}</div>
         @endif
-        <input type="text" name="password" value="{{old('password')}}">
+        <input type="text" name="password">
       </label><br>
       <label for="poste">
         Poste:<br>
         @if($errors->has('poste'))
           <div class="text-danger">{{ $errors->first('poste')}}</div>
         @endif
-        <input type="text" name="poste" value="{{old('poste')}}">
+        <input type="text" name="poste" value="{{old('poste', $user->poste)}}">
       </label><br>
         <div class="form-group w-25">
         <label for="role_id">Role :</label>

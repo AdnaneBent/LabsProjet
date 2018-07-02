@@ -25,8 +25,10 @@ class CreateArticlesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('titre', 45);
-            $table->string('contenu', 255);
+            $table->text('contenu');
+            $table->string('image', 45);
             $table->unsignedInteger('users_id');
+            $table->unsignedInteger('categories_id');
             $table->softDeletes();
             $table->timestamps();
 

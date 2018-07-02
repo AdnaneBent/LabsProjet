@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use App\User;
-use App\Role;
+use App\Categorie;
+use App\Tag;
+use Storage;
+use Auth;
 
 class ArticleController extends Controller
 {
@@ -17,8 +20,10 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all()->sortByDesc('created_at');
+        $categories = Categorie::all();
         $user = User::all();
-        return view("admin.articles.index",compact('articles', 'user'));
+        $tags = Tag::all();
+        return view("admin.articles.index",compact('articles', 'user', 'tags','categories'));
     }
 
     /**
@@ -28,9 +33,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
-        $users = User::all();
-        return view("admin.articles.create",compact('users', 'roles'));
+        $categories = Categorie::all();
+        $tags = Tag::all();
+        return view("admin.articles.create",compact('users', "tags",'categories'));
     }
 
     /**
@@ -42,11 +47,20 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $article = new Article;
+        $article->titre = $request->titre;
         $article->contenu = $request->contenu;
-        $article->users_id = $request->users_id;
-        $article->save();
+        $article->categories_id = $request->categories_id;
+        $article->image = $request->image->store('','imgArticle');
+        $article->users_id = Auth::user()->id;
 
-        return redirect()->route('users.index');
+        if($article->save()){
+            foreach($request->tag_id as $tag)
+            {
+                $article->tags()->attach($tag);
+            }
+        };
+
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -55,9 +69,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        //
+        
+        return view("admin.articles.show",compact('article'));
     }
 
     /**
@@ -66,9 +81,11 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        $tags = Tag::all();
+        $categories = Categorie::all();
+        return view('admin.articles.edit', compact('article','categories','tags'));
     }
 
     /**
@@ -78,9 +95,28 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        $article->titre = $request->titre;
+        $article->contenu = $request->contenu;
+        $article->categories_id = $request->categories_id;
+
+        if ($request->image != null)
+        {
+            Storage::disk('imgArticle')->delete($article->image);
+            $article->image = $request->image->store('','imgArticle');
+    
+        }
+        
+        $article->tags()->detach();
+
+        if($article->save()){
+            foreach($request->tag_id as $tag)
+            {
+                $article->tags()->attach($tag);
+            }
+            return redirect()->route('articles.index',['article'=> $article->id]);
+        }
     }
 
     /**
@@ -91,6 +127,8 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+        $article->delete();
+        return redirect()->route('articles.index');
     }
 }
