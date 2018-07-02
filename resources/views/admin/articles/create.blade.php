@@ -10,13 +10,16 @@
   <form action="{{route('articles.store')}}" method="post" enctype="multipart/form-data">
   @method('POST')
   @csrf
+  {{-- Début du titre --}}
     <div class="text-center">
         <h5>Titre de l'article</h5>
         @if($errors->has('titre'))
           <div class="text-danger">{{ $errors->first('titre')}}</div>
         @endif
-        <input name="titre" for="titre">{{old('titre')}}<br>
+        <input name="titre" value="{{old('titre')}}" for="titre"><br>
+  {{-- Fin du titre --}}
         <br>
+  {{-- Début du contenu --}}
         <h5>Contenu de l'article</h5>
         @if($errors->has('contenu'))
           <div class="text-danger">{{ $errors->first('contenu')}}</div>
@@ -29,20 +32,22 @@
               <option value="{{$categorie->id}}">{{$categorie->name}}</option>
               @endforeach
             </select>
+  {{-- Fin du contenu --}}
         <br>
+  {{-- Debut du tag --}}
         <h5>Tags</h5>
         @if($errors->has('tags_id'))
           <div class="text-danger">{{ $errors->first('tags_id')}}</div>
         @endif
-
         <div class="form-check">
           @foreach($tags as $tag)
           <label class="form-check-label m-3">
-            <input type="checkbox" class="form-check-input" name="tag_id[]" id="tag" value="{{$tag->id}}">
+            <input type="checkbox" class="form-check-input" name="tags_id[]" id="tag" value="{{$tag->id}}">
             {{$tag->name}}
           </label>
           @endforeach
         </div>
+  {{-- Fin du tag --}}
         <img src="" alt="">
         @if($errors->has('image'))
             <div class="text-danger">{{ $errors->first('image')}}</div>

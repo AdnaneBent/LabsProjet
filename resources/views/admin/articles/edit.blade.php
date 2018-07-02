@@ -31,14 +31,13 @@
             </select>
         <br>
         <h5>Tags</h5>
-        @if($errors->has('tags'))
-          <div class="text-danger">{{ $errors->first('tags')}}</div>
+        @if($errors->has('tags_id'))
+          <div class="text-danger">{{ $errors->first('tags_id')}}</div>
         @endif
-
         <div class="form-check">
           @foreach($tags as $tag)
           <label class="form-check-label m-3">
-            <input type="checkbox" class="form-check-input" name="tag_id[]" id="tag" value="{{$tag->id}}">
+            <input type="checkbox" class="form-check-input" name="tags_id[]" id="tag" value="{{$tag->id}}">
             {{$tag->name}}
           </label>
           @endforeach

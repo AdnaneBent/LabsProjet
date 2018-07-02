@@ -28,6 +28,9 @@
                 @endforeach
             </div>
             <div class="card-body">
+                <h3>Contenu : <br>{{$description = substr($article->contenu, 0, 300)}} ...</h3>
+            </div>
+            <div class="card-body">
                 <a class="btn btn-primary" href="{{route('articles.show',['article'=>$article->id])}}">Voir</a>
             </div>
         </div>

@@ -8,6 +8,8 @@ use App\User;
 use App\Categorie;
 use App\Tag;
 use Storage;
+use App\Http\Requests\StoreArticle;
+use App\Http\Requests\StoreArticleNoimg;
 use Auth;
 
 class ArticleController extends Controller
@@ -44,7 +46,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreArticle $request)
     {
         $article = new Article;
         $article->titre = $request->titre;
@@ -54,7 +56,7 @@ class ArticleController extends Controller
         $article->users_id = Auth::user()->id;
 
         if($article->save()){
-            foreach($request->tag_id as $tag)
+            foreach($request->tags_id as $tag)
             {
                 $article->tags()->attach($tag);
             }
@@ -95,7 +97,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(StoreArticleNoimg $request, Article $article)
     {
         $article->titre = $request->titre;
         $article->contenu = $request->contenu;
@@ -111,7 +113,7 @@ class ArticleController extends Controller
         $article->tags()->detach();
 
         if($article->save()){
-            foreach($request->tag_id as $tag)
+            foreach($request->tags_id as $tag)
             {
                 $article->tags()->attach($tag);
             }
@@ -128,6 +130,7 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $article = Article::find($id);
+        $article->tags()->detach();
         $article->delete();
         return redirect()->route('articles.index');
     }
