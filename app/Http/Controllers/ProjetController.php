@@ -52,10 +52,10 @@ class ProjetController extends Controller
         $image = [
             "name" => $request->image,
             "disk" => "imgProjet",
-            "w" => 372,
+            "w" => 362,
             "h" => 271
         ];
-        $article->image = $this->imageResize->imageStore($image);
+        $projet->image = $this->imageResize->imageStore($image);
 
         $projet->save();
         return redirect()->route("projets.index");
@@ -97,16 +97,14 @@ class ProjetController extends Controller
         $projet->contenu = $request->contenu;
         if ($request->image != null)
         {
-            Storage::disk('imgProjet')->delete($projet)->image;
+            Storage::disk('imgProjet')->delete($projet->image);
             $projet->image = $request->image->store('','imgProjet');
     
         }
-
-
         $image = [
             "name" => $request->image,
             "disk" => "imgProjet",
-            "w" => 372,
+            "w" => 362,
             "h" => 271
         ];
         $projet->image = $this->imageResize->imageStore($image);

@@ -61,7 +61,7 @@ class UserController extends Controller
             "w" => 360,
             "h" => 448
         ];
-        $article->image = $this->imageResize->imageStore($image);
+        $user->image = $this->imageResize->imageStore($image);
         $user->email = $request->email;
         $user->roles_id1 = $request->roles_id1;
         $user->save();

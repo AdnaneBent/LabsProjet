@@ -55,7 +55,7 @@ class ClientController extends Controller
             "w" => 100,
             "h" => 100
         ];
-        $article->image = $this->imageResize->imageStore($image);
+        $client->image = $this->imageResize->imageStore($image);
 
         $client->save();
         return redirect()->route("clients.index");
