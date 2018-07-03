@@ -7,9 +7,14 @@ use App\Caroussel;
 use Storage;
 use App\Http\Requests\StoreImgCaroussel;
 use App\Http\Requests\StoreEditImgCaroussel;
+use App\Services\imageResize;
 
 class CarousselController extends Controller
 {
+
+    public function __construct(ImageResize $imageResize){
+        $this->imageResize = $imageResize;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +53,7 @@ class CarousselController extends Controller
             "w" => 1920,
             "h" => 1274
         ];
-        $article->image = $this->imageResize->imageStore($image);
+        $caroussel->image = $this->imageResize->imageStore($image);
 
         $caroussel->save();
         return redirect()->route("caroussels.index");
@@ -99,6 +104,7 @@ class CarousselController extends Controller
             "w" => 1920,
             "h" => 1274
         ];
+        $caroussel->image = $this->imageResize->imageStore($image);
 
         $caroussel->save();
         return redirect()->route('caroussels.index',['caroussel'=> $caroussel->id]);

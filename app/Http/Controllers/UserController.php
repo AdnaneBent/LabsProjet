@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\Http\Requests\StoreUser;
+use App\Services\imageResize;
 
 class UserController extends Controller
 {
+
+     public function __construct(ImageResize $imageResize){
+        $this->imageResize = $imageResize;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -56,6 +61,7 @@ class UserController extends Controller
             "w" => 360,
             "h" => 448
         ];
+        $article->image = $this->imageResize->imageStore($image);
         $user->email = $request->email;
         $user->roles_id1 = $request->roles_id1;
         $user->save();
@@ -113,6 +119,7 @@ class UserController extends Controller
             "w" => 360,
             "h" => 448
         ];
+        $user->image = $this->imageResize->imageStore($image);
         $user->email = $request->email;
         $user->roles_id1 = $request->roles_id1;
         $user->save();

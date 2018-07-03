@@ -7,9 +7,14 @@ use App\Projet;
 use Storage;
 use App\Http\Requests\StoreProjet;
 use App\Http\Requests\StoreEditProjet;
+use App\Services\imageResize;
 
 class ProjetController extends Controller
 {
+
+     public function __construct(ImageResize $imageResize){
+        $this->imageResize = $imageResize;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -50,6 +55,7 @@ class ProjetController extends Controller
             "w" => 372,
             "h" => 271
         ];
+        $article->image = $this->imageResize->imageStore($image);
 
         $projet->save();
         return redirect()->route("projets.index");
@@ -103,6 +109,7 @@ class ProjetController extends Controller
             "w" => 372,
             "h" => 271
         ];
+        $projet->image = $this->imageResize->imageStore($image);
 
         $projet->save();
         return redirect()->route('projets.index',['projet'=> $projet->id]);

@@ -131,6 +131,7 @@ class ArticleController extends Controller
             "w" => 755,
             "h" => 270
         ];
+        $article->image = $this->imageResize->imageStore($image);
         
         $article->tags()->detach();
 

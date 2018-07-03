@@ -7,9 +7,14 @@ use App\Client;
 use Storage;
 use App\Http\Requests\StoreClient;
 use App\Http\Requests\StoreEditClient;
+use App\Services\imageResize;
 
 class ClientController extends Controller
 {
+
+     public function __construct(ImageResize $imageResize){
+        $this->imageResize = $imageResize;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -50,6 +55,7 @@ class ClientController extends Controller
             "w" => 100,
             "h" => 100
         ];
+        $article->image = $this->imageResize->imageStore($image);
 
         $client->save();
         return redirect()->route("clients.index");
@@ -101,6 +107,7 @@ class ClientController extends Controller
             "w" => 100,
             "h" => 100
         ];
+        $client->image = $this->imageResize->imageStore($image);
         
         $client->save();
         return redirect()->route('clients.index',['client'=> $client->id]);
