@@ -43,6 +43,14 @@ class ClientController extends Controller
         $client->name = $request->name;
         $client->company = $request->company;
         $client->image = $request->image->store('','imgClient');
+
+        $image = [
+            "name" => $request->image,
+            "disk" => "imgClient",
+            "w" => 100,
+            "h" => 100
+        ];
+
         $client->save();
         return redirect()->route("clients.index");
     }
@@ -86,6 +94,14 @@ class ClientController extends Controller
             Storage::disk('imgClient')->delete($client->image);
             $client->image = $request->image->store('','imgClient');
         }
+
+        $image = [
+            "name" => $request->image,
+            "disk" => "imgClient",
+            "w" => 100,
+            "h" => 100
+        ];
+        
         $client->save();
         return redirect()->route('clients.index',['client'=> $client->id]);
     }

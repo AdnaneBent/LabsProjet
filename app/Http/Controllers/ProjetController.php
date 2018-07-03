@@ -43,6 +43,14 @@ class ProjetController extends Controller
         $projet->name = $request->name;
         $projet->contenu = $request->contenu;
         $projet->image = $request->image->store('','imgProjet');
+
+        $image = [
+            "name" => $request->image,
+            "disk" => "imgProjet",
+            "w" => 372,
+            "h" => 271
+        ];
+
         $projet->save();
         return redirect()->route("projets.index");
     }
@@ -87,6 +95,15 @@ class ProjetController extends Controller
             $projet->image = $request->image->store('','imgProjet');
     
         }
+
+
+        $image = [
+            "name" => $request->image,
+            "disk" => "imgProjet",
+            "w" => 372,
+            "h" => 271
+        ];
+
         $projet->save();
         return redirect()->route('projets.index',['projet'=> $projet->id]);
     }

@@ -151,7 +151,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        App\Providers\ImageManagerProvider::class,
         /*
          * Application Service Providers...
          */

@@ -7,13 +7,18 @@ use App\Article;
 use App\User;
 use App\Categorie;
 use App\Tag;
+use App\Services\imageResize;
 use Storage;
 use App\Http\Requests\StoreArticle;
-use App\Http\Requests\StoreArticleNoimg;
+use App\Http\Requests\StoreEditArticle;
 use Auth;
 
 class ArticleController extends Controller
 {
+
+    public function __construct(ImageResize $imageResize){
+        $this->imageResize = $imageResize;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -54,6 +59,16 @@ class ArticleController extends Controller
         $article->categories_id = $request->categories_id;
         $article->image = $request->image->store('','imgArticle');
         $article->users_id = Auth::user()->id;
+
+        $image = [
+            "name" => $request->image,
+            "disk" => "imgArticle",
+            "w" => 755,
+            "h" => 270
+        ];
+        $article->image = $this->imageResize->imageStore($image);
+
+
 
         if($article->save()){
             foreach($request->tags_id as $tag)
@@ -97,7 +112,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreArticleNoimg $request, Article $article)
+    public function update(StoreEditArticle $request, Article $article)
     {
         $article->titre = $request->titre;
         $article->contenu = $request->contenu;
@@ -109,6 +124,13 @@ class ArticleController extends Controller
             $article->image = $request->image->store('','imgArticle');
     
         }
+
+        $image = [
+            "name" => $request->image,
+            "disk" => "imgArticle",
+            "w" => 755,
+            "h" => 270
+        ];
         
         $article->tags()->detach();
 

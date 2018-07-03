@@ -42,6 +42,14 @@ class CarousselController extends Controller
         $caroussel = new Caroussel;
         $caroussel->name = $request->name;
         $caroussel->image = $request->image->store('','imgCaroussel');
+        $image = [
+            "name" => $request->image,
+            "disk" => "imgCaroussel",
+            "w" => 1920,
+            "h" => 1274
+        ];
+        $article->image = $this->imageResize->imageStore($image);
+
         $caroussel->save();
         return redirect()->route("caroussels.index");
 
@@ -85,6 +93,13 @@ class CarousselController extends Controller
             Storage::disk('imgCaroussel')->delete($caroussel)->image;
             $caroussel->image = $request->image->store('','imgCaroussel');
         }
+        $image = [
+            "name" => $request->image,
+            "disk" => "imgCaroussel",
+            "w" => 1920,
+            "h" => 1274
+        ];
+
         $caroussel->save();
         return redirect()->route('caroussels.index',['caroussel'=> $caroussel->id]);
     }

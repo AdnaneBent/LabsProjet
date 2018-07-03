@@ -49,6 +49,13 @@ class UserController extends Controller
         if($request->poste != NULL){
             $user->poste = $request->poste;
         }
+
+        $image = [
+            "name" => $request->image,
+            "disk" => "imgUser",
+            "w" => 360,
+            "h" => 448
+        ];
         $user->email = $request->email;
         $user->roles_id1 = $request->roles_id1;
         $user->save();
@@ -99,6 +106,13 @@ class UserController extends Controller
         if($request->poste != NULL){
             $user->poste = $request->poste;
         }
+
+        $image = [
+            "name" => $request->image,
+            "disk" => "imgUser",
+            "w" => 360,
+            "h" => 448
+        ];
         $user->email = $request->email;
         $user->roles_id1 = $request->roles_id1;
         $user->save();
