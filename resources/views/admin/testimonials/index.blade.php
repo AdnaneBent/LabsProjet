@@ -12,8 +12,9 @@
 <div class="text-center">
     <div class="row justify-content-around">
     @foreach($testimonials as $testimonial)
-        <div class="card col-3 m-4" style="width: 18rem;">
-            <h3>Nom du client : {{$testimonial->client->name}}</h3>
+    @if($testimonial->client != NULL)
+    <div class="card col-3 m-4" style="width: 18rem;">
+        <h3>Nom du client : {{$testimonial->client->name}}</h3>
             <img class="card-img-top mt-2" src="{{Storage::disk('imgClient')->url($testimonial->client->image)}}" alt="{{$testimonial->client->name}}">
             <div class="card-body">
                 <h3>contenu : <br>{{$testimonial->contenu}}</h3>
@@ -22,6 +23,7 @@
                 <a class="btn btn-primary" href="{{route('testimonials.show',['testimonial'=>$testimonial->id])}}">Voir</a>
             </div>
         </div>
+        @endif
         @endforeach
     </div>
 </div>

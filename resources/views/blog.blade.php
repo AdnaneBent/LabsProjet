@@ -169,6 +169,7 @@
 				<div class="widget-item">
 					<h2 class="widget-title">Quote</h2>
 					@foreach($testimonials as $testimonial)
+					 @if($testimonial->client != NULL)
 					<!-- single testimonial -->
 					<div class="testimonial">
 						<span>‘​‌‘​‌</span>
@@ -183,6 +184,7 @@
 							</div>
 						</div>
 					</div>
+					@endif
 					@endforeach
 				</div>
 			</div>

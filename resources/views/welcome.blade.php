@@ -94,6 +94,7 @@
 				</div>
 				<div class="owl-carousel" id="testimonial-slide">
 					@foreach($testimonials as $testimonial)
+					 @if($testimonial->client != NULL)
 					<!-- single testimonial -->
 					<div class="testimonial">
 						<span>‘​‌‘​‌</span>
@@ -108,6 +109,7 @@
 							</div>
 						</div>
 					</div>
+					@endif
 					@endforeach
 				</div>
 			</div>
