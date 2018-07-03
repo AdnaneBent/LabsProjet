@@ -25,6 +25,7 @@ class StoreEditImgCaroussel extends FormRequest
     {
         return [
             'name'  =>  "required|max:45",
+            'image'  =>  'max:20000000|dimensions:min_width=1920.min_height=1274',
         ];
     }
 
@@ -32,6 +33,8 @@ class StoreEditImgCaroussel extends FormRequest
         {
         return[
         'name.required'  =>  "Il faut un nom d'image",
+        'image.max' => "L'image ne peut pas dépasser 20Mb",
+        'image.dimensions' => "Il faut une image a 1920 de largeur et 1274 de hauteur"
             ];
         }
 }

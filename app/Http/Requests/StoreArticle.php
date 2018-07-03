@@ -26,7 +26,7 @@ class StoreArticle extends FormRequest
         return [
             'titre'  =>  "required|max:45",
             'contenu' => 'required',
-            'image'  =>  'required|max:20000000',
+            'image'  =>  'required|max:20000000|dimensions:min_width=755.min_height=270',
             'tags_id' => 'required',
         ];
     }
@@ -40,6 +40,7 @@ class StoreArticle extends FormRequest
         'contenu.max' => "Maximum :max caractères",
         'image.required'  =>  "Il faut une image pour l'article'",
         'image.max' => "L'image ne peut pas dépasser 20Mb",
+        'image.dimensions' => 'Il faut une image dont la hauteur fait 755 et la largeur 270',
         'tags_id.required' => 'Il faut cocher un tag'
             ];
         }

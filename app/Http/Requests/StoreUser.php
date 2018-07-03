@@ -28,7 +28,7 @@ class StoreUser extends FormRequest
             'password' => 'required|max:255',
             'email' => 'required|email|unique:users,id,',
             'poste' => 'max:45',
-            'image'  =>  'max:20000000',
+            'image'  =>  'max:20000000|dimensions:min_width=360.min_height=448',
             'role' => 'exists'
         ];
     }
@@ -42,8 +42,9 @@ class StoreUser extends FormRequest
         'password.max' => "Maximum :max caractères",
         'email.required' => "Il faut une adresse mail valide",
         'poste.max' => "Maximum :max caractères",
+        'image.dimensions' => 'Il faut une image dont la hauteur fait 360 et la largeur 448',
         'image.max' => "L'image ne peut pas dépasser 20Mb",
-        'roles_id.exists' => "Triche pas petit tricheur"
+        'roles_id.exists' => "Triche pas petit tricheur",
             ];
         }
 }

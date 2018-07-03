@@ -26,7 +26,7 @@ class StoreClient extends FormRequest
         return [
             'name'  =>  "required|max:45",
             'company' => 'required|max:45',
-            'image'  =>  'required|max:20000000',
+            'image'  =>  'required|max:20000000|dimensions:min_width=100.min_height=100',
         ];
     }
 
@@ -39,6 +39,7 @@ class StoreClient extends FormRequest
         'company.max' => "Maximum :max caractères",
         'image.required'  =>  "Il faut une image pour la compagnie",
         'image.max' => "L'image ne peut pas dépasser 20Mb",
+        'image.dimensions' => 'Il faut une image dont la hauteur fait 100 et la largeur 100'
             ];
         }
 }

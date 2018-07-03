@@ -26,6 +26,10 @@ class StoreEditProjet extends FormRequest
         return [
             'name'  =>  "required|max:45",
             'contenu' => 'required|max:255',
+            'image'  =>  'max:20000000|dimensions:min_width=372.min_height=271',
+            'image.max' => "L'image ne peut pas dépasser 20Mb",
+            'image.dimensions' => 'Il faut une image dont la hauteur fait 372 et la largeur 271'
+
         ];
     }
 

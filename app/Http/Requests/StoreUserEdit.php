@@ -28,7 +28,7 @@ class StoreUserEdit extends FormRequest
             'password' => 'required|max:255',
             'email' => 'required|email|unique:users,id,'.$this->user->id,
             'poste' => 'max:45',
-            'image'  =>  'max:20000000',
+            'image'  =>  'max:20000000|dimensions:min_width=360.min_height=448',
             'role' => 'exists'
         ];
     }
@@ -43,6 +43,7 @@ class StoreUserEdit extends FormRequest
         'email.required' => "Il faut une adresse mail valide",
         'poste.max' => "Maximum :max caractères",
         'image.max' => "L'image ne peut pas dépasser 20Mb",
+        'image.dimensions' => 'Il faut une image dont la hauteur fait 360 et la largeur 448',
         'roles_id.exists' => "Triche pas petit tricheur"
             ];
         }

@@ -25,7 +25,7 @@ class StoreImgCaroussel extends FormRequest
     {
         return [
             'name'  =>  "required|max:45",
-            'image'  =>  'required|max:20000000',
+            'image'  =>  'required|max:20000000|dimensions:min_width=1920.min_height=1274',
         ];
     }
 
@@ -36,6 +36,7 @@ class StoreImgCaroussel extends FormRequest
         'name.max' => "Maximum :max caractères",
         'image.required'  =>  "Il faut une image",
         'image.max' => "L'image ne peut pas dépasser 20Mb",
+        'image.dimensions' => "Il faut une image a 1920 de largeur et 1274 de hauteur"
             ];
         }
     
