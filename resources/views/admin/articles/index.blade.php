@@ -16,20 +16,28 @@
 
             <h3>Nom de l'article : {{$article->titre}}</h3>
             <img class="card-img-top mt-2" src="{{Storage::disk('imgArticle')->url($article->image)}}" alt="Card image cap">
+            {{-- Debut du nom de l'auteur --}}
             <div class="card-body">
                 <h3>Nom de l'auteur : <br>{{$article->user->name}}</h3>
             </div>
+            {{-- Fin du nom de l'auteur --}}
+            {{-- Debut de la catégorie --}}
             <div class="card-body">
                 <h3>Categorie : <br>{{$article->categorie->name}}</h3>
             </div>
+            {{-- Fin de la catégorie --}}
+            {{-- Tag --}}
             <div class="card-body">
                 @foreach($article->tags as $tag)
                 <p>{{$tag->name}}</p>
                 @endforeach
             </div>
+            {{-- Fin de Tag --}}
+            {{-- Contenu --}}
             <div class="card-body">
                 <h3>Contenu : <br>{{$description = substr($article->contenu, 0, 300)}} ...</h3>
             </div>
+            {{-- Fin contenu --}}
             <div class="card-body">
                 <a class="btn btn-primary" href="{{route('articles.show',['article'=>$article->id])}}">Voir</a>
             </div>
