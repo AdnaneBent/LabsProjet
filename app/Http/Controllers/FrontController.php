@@ -9,6 +9,10 @@ use App\Testimonial;
 use App\Client;
 use App\Projet;
 use App\Tag;
+use App\User;
+use App\Mail\ContactMail;
+use App\Http\Requests\StoreContact;
+use Mail;
 
 class FrontController extends Controller
 {
@@ -33,6 +37,11 @@ class FrontController extends Controller
         $tags = Tag::all();
         $testimonials = Testimonial::orderByRaw("RAND()")->get()->take(1);
         return view("blog",compact('testimonials','tags'));
+    }
+
+    public  function  contactMail(storeContact  $request){
+    Mail::to(User::get())->send(new ContactMail($request));
+    return redirect()->back();
     }
 
 

@@ -35,3 +35,4 @@ Route::resource('/admin/users', 'UserController');
 Route::get('/', 'FrontController@welcome')->name('welcome');
 Route::get('/services', 'FrontController@service')->name('services');
 Route::get('/blogs', 'FrontController@blog')->name('blog');
+Route::post('/contactMail', 'FrontController@contactMail')->name('contactMail');

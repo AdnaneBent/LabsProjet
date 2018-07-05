@@ -16,19 +16,33 @@
 				<p class="con-item">hello@company.com</p>
 			</div>
 			<!-- contact form -->
-			<div class="col-md-6 col-pull">
-				<form class="form-class" id="con_form">
+				<div class="col-md-6 col-pull">
+					<form action="{{route('contactMail')}}" class="form-class" id="con_form" method="POST">
+					@csrf
+					@method("POST")
 					<div class="row">
 						<div class="col-sm-6">
+							@if($errors->has('name'))
+          					<div class="text-danger">{{ $errors->first('name')}}</div>
+        					@endif
 							<input type="text" name="name" placeholder="Your name">
 						</div>
 						<div class="col-sm-6">
+							@if($errors->has('email'))
+          					<div class="text-danger">{{ $errors->first('email')}}</div>
+        					@endif
 							<input type="text" name="email" placeholder="Your email">
 						</div>
 						<div class="col-sm-12">
+							@if($errors->has('subject'))
+          					<div class="text-danger">{{ $errors->first('subject')}}</div>
+        					@endif
 							<input type="text" name="subject" placeholder="Subject">
+							@if($errors->has('message'))
+          					<div class="text-danger">{{ $errors->first('message')}}</div>
+        					@endif
 							<textarea name="message" placeholder="Message"></textarea>
-							<button class="site-btn">send</button>
+							<button type="submit" class="site-btn">send</button>
 						</div>
 					</div>
 				</form>
