@@ -35,6 +35,7 @@ Route::resource('/admin/users', 'UserController');
 Route::get('/', 'FrontController@welcome')->name('welcome');
 Route::get('/services', 'FrontController@service')->name('services');
 Route::get('/blogs', 'FrontController@blog')->name('blog');
+Route::get('/blogs{article}', 'FrontController@blogShow')->name('blogShow');
 Route::post('/contactMail', 'FrontController@contactMail')->name('contactMail');
 Route::post('/newsletterMail', 'NewsletterController@newsletterMail')->name('newsletterMail');
 
