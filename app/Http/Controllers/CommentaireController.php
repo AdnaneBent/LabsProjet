@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Commentaire;
 
 class CommentaireController extends Controller
 {
@@ -12,8 +13,9 @@ class CommentaireController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+
+    {   $commentaires = Commentaire::all();
+        return view("admin.commentaires.index",compact('commentaires'));
     }
 
     /**
@@ -34,7 +36,7 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

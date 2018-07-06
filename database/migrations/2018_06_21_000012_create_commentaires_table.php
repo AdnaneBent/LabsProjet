@@ -24,8 +24,11 @@ class CreateCommentairesTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('email', 45);
+            $table->string('name',45);
+            $table->string('subject',60);
             $table->text('contenu');
-            $table->unsignedInteger('users_id');
+            $table->unsignedInteger('users_id')->nullable();
             $table->unsignedInteger('articles_id');
             $table->softDeletes();
             $table->timestamps();

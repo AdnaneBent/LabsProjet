@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Labs</b> Design Studio',
 
     'logo_mini' => '<b>A</b>LT',
 
@@ -149,6 +149,11 @@ return [
         [
             'text'        => 'Articles',
             'url'         => 'admin/articles',
+            'icon'        => 'file',
+        ],
+         [
+            'text'        => 'Commentaires',
+            'url'         => 'admin/commentaires',
             'icon'        => 'file',
         ],
          [

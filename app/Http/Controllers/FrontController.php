@@ -11,6 +11,7 @@ use App\Projet;
 use App\Tag;
 use App\Article;
 use App\Categorie;
+use App\Commentaire;
 use App\User;
 use App\Mail\ContactMail;
 use App\Http\Requests\StoreContact;
@@ -46,12 +47,27 @@ class FrontController extends Controller
     public function blogShow(Article $article){
         $categories = Categorie::all();
         $tags = Tag::all();
+        $commentaires = Commentaire::all();
         $testimonials = Testimonial::orderByRaw("RAND()")->get()->take(1);
-        return view("blog-post",compact('testimonials','tags', 'article', 'categories'));
+        return view("blog-post",compact('testimonials','tags', 'article', 'categories','commentaires'));
     }
 
     public  function  contactMail(storeContact  $request){
     Mail::to(User::get())->send(new ContactMail($request));
     return redirect()->back();
+    }
+
+    public function commentaire(Request $request, $articles_id){
+        $commentaire = new Commentaire;
+        $commentaire->name = $request->name;
+        $commentaire->contenu = $request->contenu;
+        $commentaire->subject = $request->subject;
+        $commentaire->email = $request->email;
+        $commentaire->articles_id = $articles_id;
+
+        $commentaire->save();
+
+        return redirect()->back();
+
     }
 }

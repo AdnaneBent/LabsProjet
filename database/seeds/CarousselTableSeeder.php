@@ -14,7 +14,7 @@ class CarousselTableSeeder extends Seeder
     {
         Caroussel::create( [
         'name'=>'img 1',
-        'image'=>'B5ib5IyHyWiKDqY81fX5FOaDM7Z2LkmQBUygEYBn.jpeg',
+        'image'=>'EWyoXoOdzyox813Rhz2LtfjICRTRTN1t1W52SfQa.jpeg',
         'created_at'=>'2018-06-28 07:09:07',
         'updated_at'=>'2018-06-28 07:09:07'
         ] );

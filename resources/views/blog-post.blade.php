@@ -21,8 +21,8 @@
 						<div class="post-thumbnail">
 							<img src="{{Storage::disk('imgArticle')->url($article->image)}}" alt="">
 							<div class="post-date">
-								<h2>03</h2>
-								<h3>Nov 2017</h3>
+								<h2>{{$article->created_at->format('d')}}</h2>
+								<h3>{{$article->created_at->format('M Y')}}</h3>
 							</div>
 						</div>
 						<div class="post-content">
@@ -44,7 +44,7 @@
 								<img src="{{Storage::disk('imgUser')->url($article->user->image)}}" alt="">
 							</div>
 							<div class="author-info">
-								<h2>{{$article->user->name}}<span>Author</span></h2>
+								<h2>{{$article->user->name}} <span>Author</span></h2>
 								<p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
 							</div>
 						</div>
@@ -52,31 +52,26 @@
 						<div class="comments">
 							<h2>Comments (2)</h2>
 							<ul class="comment-list">
+								@foreach($commentaires as $commentaire)
 								<li>
 									<div class="avatar">
-										<img src="img/avatar/01.jpg" alt="">
+										<img src="{{Storage::disk('imgUser')->url($article->user->image)}}" alt="">
 									</div>
 									<div class="commetn-text">
-										<h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-										<p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
+										<h3>{{$commentaire->name}} | {{$commentaire->created_at->format('d M Y')}} |</h3>
+										<p>{{$commentaire->contenu}}</p>
 									</div>
 								</li>
-								<li>
-									<div class="avatar">
-										<img src="img/avatar/02.jpg" alt="">
-									</div>
-									<div class="commetn-text">
-										<h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-										<p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
-									</div>
-								</li>
+								@endforeach
 							</ul>
 						</div>
 						<!-- Commert Form -->
 						<div class="row">
 							<div class="col-md-9 comment-from">
 								<h2>Leave a comment</h2>
-								<form class="form-class">
+								<form action="{{route('commentaire', ['articles_id'=>$article->id])}}" class="form-class" method="POST">
+									@csrf
+									@method('POST')
 									<div class="row">
 										<div class="col-sm-6">
 											<input type="text" name="name" placeholder="Your name">
@@ -86,7 +81,7 @@
 										</div>
 										<div class="col-sm-12">
 											<input type="text" name="subject" placeholder="Subject">
-											<textarea name="message" placeholder="Message"></textarea>
+											<textarea name="contenu" placeholder="Message"></textarea>
 											<button class="site-btn">send</button>
 										</div>
 									</div>
