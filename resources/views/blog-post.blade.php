@@ -33,8 +33,8 @@
 									@foreach($article->tags as $tag)
 									{{$tag->name}}
 									@endforeach
-								</a>
-								<a href="">{{count($article->commentaires)}}</a>
+								</a>	
+								<a href="">{{$article->commentaires->where('validation', 1)->count()}}</a>
 							</div>
 							<p>{{$article->contenu}}</p>
 						</div>
@@ -50,9 +50,10 @@
 						</div>
 						<!-- Post Comments -->
 						<div class="comments">
-							<h2>{{count($article->commentaires)}}</h2>
+							<h4>{{$article->commentaires->where('validation', 1)->count()}}</h4><br>
 							<ul class="comment-list">
 								@foreach($article->commentaires as $commentaire)
+								@if($commentaire->validation == 1)
 								<li>
 									<div class="avatar">
 										<img src="{{Storage::disk('imgUser')->url($article->user->image)}}" alt="">
@@ -62,6 +63,7 @@
 										<p>{{$commentaire->contenu}}</p>
 									</div>
 								</li>
+								@endif
 								@endforeach
 							</ul>
 						</div>

@@ -44,7 +44,7 @@
 								</a>
 							<a href="">{{count($article->commentaires)}}</a>
 						</div>
-						<p>{{$article->contenu}}</p>
+						<p>{{$description = substr($article->contenu, 0, 300)}} ...</p>
 						<a href="{{route('blogShow',['article'=>$article->id])}}" class="read-more">Read More</a>
 					</div>
 				</div>

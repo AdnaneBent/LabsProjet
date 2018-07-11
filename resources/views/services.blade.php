@@ -16,7 +16,9 @@
 </div>
 <!-- Page header end-->
 
-@include('components.services', $services)
+<div id="services">
+  @include('components.services', $services)
+</div>
 
 <!-- features section -->
 <div class="team-section spad">
@@ -62,7 +64,7 @@
       </div>
     </div>
         <div class="text-center mt100">
-          <a href="" class="site-btn">Browse</a>
+          <a href="#proj" class="site-btn">Browse</a>
         </div>
   </div>
 </div>
@@ -70,7 +72,7 @@
 
 
 <!-- services card section-->
-<div class="services-card-section spad">
+<div id="proj" class="services-card-section spad">
   <div class="container">
     <div class="row">
       @foreach($projets as $projet)

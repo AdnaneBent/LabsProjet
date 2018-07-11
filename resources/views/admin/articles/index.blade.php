@@ -15,6 +15,13 @@
     <div class="card col-3 m-4" style="width: 18rem;">
         
         <h3>Nom de l'article : {{$article->titre}}</h3>
+        @if($article->validation == 1)
+        <span class="badge badge-success">Validé</span>
+        @elseif($article->validation == 2)
+        <span class="badge badge-warning">En suspend</span>
+        @elseif($article->validation == 3)
+        <span class="badge badge-danger">Refusé</span>
+        @endif
         <img class="card-img-top mt-2" src="{{Storage::disk('imgArticle')->url($article->image)}}" alt="Card image cap">
         {{-- Debut du nom de l'auteur --}}
         @if($article->user != NULL)

@@ -54,11 +54,13 @@ class ArticleController extends Controller
     public function store(StoreArticle $request)
     {
         $article = new Article;
+        $article->validation = 2;
         $article->titre = $request->titre;
         $article->contenu = $request->contenu;
         $article->categories_id = $request->categories_id;
         $article->image = $request->image->store('','imgArticle');
         $article->users_id = Auth::user()->id;
+
 
         $image = [
             "name" => $request->image,
@@ -116,6 +118,7 @@ class ArticleController extends Controller
     {
         $article->titre = $request->titre;
         $article->contenu = $request->contenu;
+        $article->validation = 2;
         $article->categories_id = $request->categories_id;
 
         if ($request->image != null)

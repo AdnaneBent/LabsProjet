@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Commentaire;
 
-class CommentaireController extends Controller
+class ValidCommentaireController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +13,8 @@ class CommentaireController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-
-    {   $commentaires = Commentaire::all();
-        return view("admin.commentaires.index",compact('commentaires'));
+    {
+        //
     }
 
     /**
@@ -36,7 +35,7 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**
@@ -70,7 +69,13 @@ class CommentaireController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 
+        $commentaire = Commentaire::find($id);
+
+        $commentaire->validation = $request->validation;
+
+        $commentaire->save();
+
+        return redirect()->route("commentaires.index");
     }
 
     /**

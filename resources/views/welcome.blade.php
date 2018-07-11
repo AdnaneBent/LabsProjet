@@ -64,11 +64,11 @@
 				</div>
 			</div>
 			<div class="text-center mt60">
-				<a href="" class="site-btn">Browse</a>
+				<a href="#testi" class="site-btn">Browse</a>
 			</div>
 			<!-- popup video -->
 			<div class="intro-video">
-				<div class="row">
+				<div id="testi" class="row">
 					<div class="col-md-8 col-md-offset-2">
 						<img src="{{asset('theme/img/video.jpg')}}" alt="">
 						<a href="https://www.youtube.com/watch?v=JgHfx2v9zOU" class="video-popup">
@@ -130,29 +130,15 @@
 		</div>
 		<div class="row">
 			<!-- single member -->
+			@foreach($users as $user)
 			<div class="col-sm-4">
 				<div class="member">
-					<img src="{{asset('theme/img/team/1.jpg')}}" alt="">
-					<h2>Christinne Williams</h2>
-					<h3>Project Manager</h3>
+					 <img src="{{Storage::disk('imgUser')->url($user->image)}}" alt="">
+					<h2>{{$user->name}}</h2>
+					<h3>{{$user->poste}}</h3>
 				</div>
 			</div>
-			<!-- single member -->
-			<div class="col-sm-4">
-				<div class="member">
-					<img src="{{asset('theme/img/team/2.jpg')}}" alt="">
-					<h2>Christinne Williams</h2>
-					<h3>Junior developer</h3>
-				</div>
-			</div>
-			<!-- single member -->
-			<div class="col-sm-4">
-				<div class="member">
-					<img src="{{asset('theme/img/team/3.jpg')}}" alt="">
-					<h2>Christinne Williams</h2>
-					<h3>Digital designer</h3>
-				</div>
-			</div>
+			@endforeach
 		</div>
 	</div>
 </div>

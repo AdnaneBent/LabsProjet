@@ -29,6 +29,7 @@ class CreateArticlesTable extends Migration
             $table->string('image', 45);
             $table->unsignedInteger('users_id');
             $table->unsignedInteger('categories_id');
+            $table->unsignedInteger('validation');
             $table->softDeletes();
             $table->timestamps();
 

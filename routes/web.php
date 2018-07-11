@@ -33,6 +33,8 @@ Route::resource('/admin/testimonials', 'TestimonialController');
 Route::resource('/admin/articles', 'ArticleController');
 Route::resource('/admin/users', 'UserController');
 Route::resource('/admin/commentaires', 'CommentaireController');
+Route::resource('/admin/validCom', 'ValidCommentaireController');
+Route::resource('/admin/validation', 'ValidArticleController');
 Route::get('/', 'FrontController@welcome')->name('welcome');
 Route::get('/services', 'FrontController@service')->name('services');
 Route::get('/blogs', 'FrontController@blog')->name('blog');

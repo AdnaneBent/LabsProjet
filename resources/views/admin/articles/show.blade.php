@@ -42,13 +42,38 @@
                 @endforeach
             </div>
             {{-- Fin des Tags --}}
-            <div class="box-body">
+            <div class="row">
+                <div class="col-6">
+                    <form action="{{route('validation.update',['article'=>$article->id])}}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <input value="1" name="validation" type="hidden">
+                        <button class="btn btn-success" type="submit">Valider</button>
+                    </form>
+                    <form action="{{route('validation.update',['article'=>$article->id])}}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <input value="2" name="validation" type="hidden">
+                        <button class="btn btn-warning" type="submit">En suspend</button>
+                    </form>
+                    <form action="{{route('validation.update',['article'=>$article->id])}}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <input value="3" name="validation" type="hidden">
+                        <button class="btn btn-danger" type="submit">Refuser</button>
+                    </form>
+                </div>
+
+
+                <div class="col-6"><div class="box-body">
                 <a class="btn btn-primary" href="{{route('articles.edit',['article'=>$article->id])}}">Edité</a>
                 </div>
                 <form action="{{route('articles.destroy',['article'=>$article->id])}}"method="post">
                 @method('DELETE')
                 @csrf
-                <button type="submit" class="btn btn-danger">Supprimer</button>
+                <button type="submit" class="btn btn-danger">Supprimer</button></div>
+            </div>
+            
         </div>
     </div>
 </div>

@@ -30,6 +30,7 @@ class CreateCommentairesTable extends Migration
             $table->text('contenu');
             $table->unsignedInteger('users_id')->nullable();
             $table->unsignedInteger('articles_id');
+            $table->unsignedInteger('validation');
             $table->softDeletes();
             $table->timestamps();
 

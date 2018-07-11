@@ -20,12 +20,13 @@ use Mail;
 class FrontController extends Controller
 {
     public function welcome(){
+        $users = User::all();
         $carousselImg = Caroussel::all();
         $servicesRandom = Service::orderByRaw("RAND()")->get()->take(3);
         $services = Service::orderBy("created_at", 'DESC')->paginate(9);
         $testimonials = Testimonial::all();
         $clients = Client::all();
-        return view("welcome",compact('carousselImg','servicesRandom', 'services', 'testimonials', 'clients'));
+        return view("welcome",compact('carousselImg','servicesRandom', 'services', 'testimonials', 'clients','users'));
     }
 
     public function service(){
@@ -38,7 +39,7 @@ class FrontController extends Controller
 
     public function blog(){
         $categories = Categorie::all();
-        $articles = Article::with('commentaires')->orderBy("created_at", 'DESC')->paginate(3);
+        $articles = Article::with('commentaires')->where('validation', 1)->orderBy("created_at", 'DESC')->paginate(3);
         $tags = Tag::all();
         $testimonials = Testimonial::orderByRaw("RAND()")->get()->take(1);
         return view("blog",compact('testimonials','tags', 'articles', 'categories'));
@@ -58,6 +59,7 @@ class FrontController extends Controller
 
     public function commentaire(Request $request, $articles_id){
         $commentaire = new Commentaire;
+        $commentaire->validation = 2;
         $commentaire->name = $request->name;
         $commentaire->contenu = $request->contenu;
         $commentaire->subject = $request->subject;
@@ -70,5 +72,14 @@ class FrontController extends Controller
 
     }
 
-    public function recherche(Request $request, )
+    public function ResearchByCat (Request $request,$id){
+
+        $article = Article::where('categories_id',$id);
+
+        return view('blog');
+    }
+
+    public function ResearchByTag (Request $request,$id){
+        $articles = Tag::find($id)->articles()->where('tags_id',$id);
+    }
 }
