@@ -14,6 +14,6 @@ class Commentaire extends Model
     }
 
     public function article(){
-    return $this->belongsTo('App\Article','article_id','id');
+    return $this->belongsTo('App\Article','articles_id','id');
     }
 }

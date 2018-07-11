@@ -98,16 +98,15 @@ class ProjetController extends Controller
         if ($request->image != null)
         {
             Storage::disk('imgProjet')->delete($projet->image);
-            $projet->image = $request->image->store('','imgProjet');
-    
+            
+            $image = [
+                "name" => $request->image,
+                "disk" => "imgProjet",
+                "w" => 362,
+                "h" => 271
+            ];
+            $projet->image = $this->imageResize->imageStore($image);
         }
-        $image = [
-            "name" => $request->image,
-            "disk" => "imgProjet",
-            "w" => 362,
-            "h" => 271
-        ];
-        $projet->image = $this->imageResize->imageStore($image);
 
         $projet->save();
         return redirect()->route('projets.index',['projet'=> $projet->id]);

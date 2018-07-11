@@ -49,19 +49,19 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->password = $request->password;
         if($request->image != NULL){
-            $user->image = $request->image->store('','imgUser');
+            
+            $image = [
+                "name" => $request->image,
+                "disk" => "imgUser",
+                "w" => 360,
+                "h" => 448
+            ];
+            $user->image = $this->imageResize->imageStore($image);
         }
         if($request->poste != NULL){
             $user->poste = $request->poste;
         }
 
-        $image = [
-            "name" => $request->image,
-            "disk" => "imgUser",
-            "w" => 360,
-            "h" => 448
-        ];
-        $user->image = $this->imageResize->imageStore($image);
         $user->email = $request->email;
         $user->roles_id1 = $request->roles_id1;
         $user->save();

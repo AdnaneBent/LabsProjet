@@ -42,7 +42,7 @@
 									{{$tag->name}}
 									@endforeach
 								</a>
-							<a href="">2 Comments</a>
+							<a href="">{{count($article->commentaires)}}</a>
 						</div>
 						<p>{{$article->contenu}}</p>
 						<a href="{{route('blogShow',['article'=>$article->id])}}" class="read-more">Read More</a>

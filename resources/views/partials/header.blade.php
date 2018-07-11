@@ -21,6 +21,10 @@
 				</li>
 				<li>
 					<a href="{{route('contact')}}">Contact</a>
+				</li>
+				<li>
+					<a href="http://127.0.0.1:8000/login">Login</a>
+				</li>
 			</ul>
 		</nav>
 	</header>

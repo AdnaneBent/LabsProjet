@@ -14,7 +14,7 @@
             <h3>contenu des commentaires : {{$commentaire->contenu}}</h3>
         <h2><i class="{{$commentaire->clients_id}}"></i></h2>
             <div class="card-body">
-                <h3>contenu : <br>{{$commentaire->articles_id}}</h3>
+                <h3>Auteur du commentaire <br>{{$commentaire->name}}</h3>
             </div>
             <div class="card-body">
                 <a class="btn btn-primary" href="{{route('commentaires.edit',[''=>$commentaire->id])}}">Edité</a>

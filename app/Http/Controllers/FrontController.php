@@ -38,7 +38,7 @@ class FrontController extends Controller
 
     public function blog(){
         $categories = Categorie::all();
-        $articles = Article::orderBy("created_at", 'DESC')->paginate(3);
+        $articles = Article::with('commentaires')->orderBy("created_at", 'DESC')->paginate(3);
         $tags = Tag::all();
         $testimonials = Testimonial::orderByRaw("RAND()")->get()->take(1);
         return view("blog",compact('testimonials','tags', 'articles', 'categories'));
@@ -47,13 +47,12 @@ class FrontController extends Controller
     public function blogShow(Article $article){
         $categories = Categorie::all();
         $tags = Tag::all();
-        $commentaires = Commentaire::all();
         $testimonials = Testimonial::orderByRaw("RAND()")->get()->take(1);
         return view("blog-post",compact('testimonials','tags', 'article', 'categories','commentaires'));
     }
 
     public  function  contactMail(storeContact  $request){
-    Mail::to(User::get())->send(new ContactMail($request));
+        Mail::to(User::get())->send(new ContactMail($request));
     return redirect()->back();
     }
 
@@ -70,4 +69,6 @@ class FrontController extends Controller
         return redirect()->back();
 
     }
+
+    public function recherche(Request $request, )
 }

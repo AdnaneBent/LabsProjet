@@ -34,7 +34,7 @@
 									{{$tag->name}}
 									@endforeach
 								</a>
-								<a href="">2 Comments</a>
+								<a href="">{{count($article->commentaires)}}</a>
 							</div>
 							<p>{{$article->contenu}}</p>
 						</div>
@@ -50,15 +50,15 @@
 						</div>
 						<!-- Post Comments -->
 						<div class="comments">
-							<h2>Comments (2)</h2>
+							<h2>{{count($article->commentaires)}}</h2>
 							<ul class="comment-list">
-								@foreach($commentaires as $commentaire)
+								@foreach($article->commentaires as $commentaire)
 								<li>
 									<div class="avatar">
 										<img src="{{Storage::disk('imgUser')->url($article->user->image)}}" alt="">
 									</div>
-									<div class="commetn-text">
-										<h3>{{$commentaire->name}} | {{$commentaire->created_at->format('d M Y')}} |</h3>
+									<div class="comment-text">
+										<h4>{{$commentaire->name}} | {{$commentaire->created_at->format('d M Y')}} |</h4>
 										<p>{{$commentaire->contenu}}</p>
 									</div>
 								</li>

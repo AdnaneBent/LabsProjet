@@ -121,17 +121,17 @@ class ArticleController extends Controller
         if ($request->image != null)
         {
             Storage::disk('imgArticle')->delete($article->image);
-            $article->image = $request->image->store('','imgArticle');
+           
     
+            $image = [
+                "name" => $request->image,
+                "disk" => "imgArticle",
+                "w" => 755,
+                "h" => 270
+            ];
+            $article->image = $this->imageResize->imageStore($image);
         }
 
-        $image = [
-            "name" => $request->image,
-            "disk" => "imgArticle",
-            "w" => 755,
-            "h" => 270
-        ];
-        $article->image = $this->imageResize->imageStore($image);
         
         $article->tags()->detach();
 
