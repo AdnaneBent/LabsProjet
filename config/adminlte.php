@@ -125,26 +125,32 @@ return [
             'text'        => 'Caroussel',
             'url'         => 'admin/caroussels',
             'icon'        => 'image',
+            'can'  => 'admin',
         ],
         [
             'text'        => 'Services',
             'url'         => 'admin/services',
             'icon'        => 'file',
+            'can'  => 'admin',
+            
         ],
         [
             'text'        => 'Testimonials',
             'url'         => 'admin/testimonials',
             'icon'        => 'file',
+            'can'  => 'admin',
         ],
         [
             'text'        => 'Projets',
             'url'         => 'admin/projets',
             'icon'        => 'file',
+            'can'  => 'admin',
         ],
         [
             'text'        => 'Categories',
             'url'         => 'admin/categories',
             'icon'        => 'file',
+            'can'  => 'admin',
         ],
         [
             'text'        => 'Articles',
@@ -160,16 +166,19 @@ return [
             'text'        => 'tags',
             'url'         => 'admin/tags',
             'icon'        => 'user',
+            'can'  => 'admin',
         ],
         [
             'text'        => 'Users',
             'url'         => 'admin/users',
             'icon'        => 'user',
+            'can'  => 'admin',
         ],
         [
             'text'        => 'Clients',
             'url'         => 'admin/clients',
             'icon'        => 'user',
+            'can'  => 'admin',
         ],
         'ACCOUNT SETTINGS',
         [

@@ -3,7 +3,7 @@
 @section('title', 'User')
 
 @section('content_header')
-<h1>Création d'un utilisateur'</h1>
+<h1>Création d'un utilisateur</h1>
 @stop
 
   @section('content')

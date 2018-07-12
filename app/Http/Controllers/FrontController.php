@@ -44,12 +44,12 @@ class FrontController extends Controller
         $testimonials = Testimonial::orderByRaw("RAND()")->get()->take(1);
         return view("blog",compact('testimonials','tags', 'articles', 'categories'));
     }
-
+    
     public function blogShow(Article $article){
         $categories = Categorie::all();
         $tags = Tag::all();
         $testimonials = Testimonial::orderByRaw("RAND()")->get()->take(1);
-        return view("blog-post",compact('testimonials','tags', 'article', 'categories','commentaires'));
+        return view("blog-post",compact('testimonials','tags', 'article', 'categories'));
     }
 
     public  function  contactMail(storeContact  $request){
@@ -79,8 +79,6 @@ class FrontController extends Controller
         $tags = Tag::all();
         $articles = Article::where('categories_id',$id)->paginate(3);
 
-        
-
         return view('Search',compact('testimonials','tags', 'articles', 'categories','commentaires'));
     }
 
@@ -92,12 +90,17 @@ class FrontController extends Controller
 
         $articles = Tag::find($id)->articles()->where('tags_id',$id)->paginate(3);
 
-        // dd($articles);
-
         return view('Search',compact('testimonials','tags', 'articles', 'categories'));
     }
 
-     public function ResearchByTitre (Request $request,$id){
+     public function ResearchByTitre (Request $request){
+        $tags = Tag::all();
+        $testimonials = Testimonial::orderByRaw("RAND()")->get()->take(1);
+        $categories = Categorie::all();
+        $articles = Article::where("titre", "LIKE", "%" .$request->titre. "%" )->paginate(3);
+
+        return view('Search',compact('testimonials','tags', 'articles', 'categories'));
+    
 
     }
 }

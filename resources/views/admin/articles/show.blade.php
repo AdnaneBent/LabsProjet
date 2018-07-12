@@ -44,6 +44,7 @@
             {{-- Fin des Tags --}}
             <div class="row">
                 <div class="col-6">
+                    @can('admin')
                     <form action="{{route('validation.update',['article'=>$article->id])}}" method="post">
                         @csrf
                         @method('PUT')
@@ -62,9 +63,10 @@
                         <input value="3" name="validation" type="hidden">
                         <button class="btn btn-danger" type="submit">Refuser</button>
                     </form>
+                    @endcan
                 </div>
 
-
+                @can('utilisateur',$article)
                 <div class="col-6"><div class="box-body">
                 <a class="btn btn-primary" href="{{route('articles.edit',['article'=>$article->id])}}">Edité</a>
                 </div>
@@ -72,6 +74,7 @@
                 @method('DELETE')
                 @csrf
                 <button type="submit" class="btn btn-danger">Supprimer</button></div>
+                @endcan
             </div>
             
         </div>
