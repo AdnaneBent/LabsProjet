@@ -107,7 +107,7 @@
 					<ul>
 						@foreach($categories as $categorie)
 						<li>
-							<a href="#">{{$categorie->name}}</a>
+							<a href="{{route('SearchCat',['categorie'=>$categorie->id])}}">{{$categorie->name}}</a>
 						</li>
 						@endforeach
 					</ul>
@@ -142,7 +142,7 @@
 						@foreach($tags as $tag)
 						<ul class="tag">
 							<li>
-								<a href="">{{$tag->name}}</a>
+								<a href="{{route('SearchTag',['tag'=>$tag->id])}}">{{$tag->name}}</a>
 							</li>
 						</ul>
 						@endforeach

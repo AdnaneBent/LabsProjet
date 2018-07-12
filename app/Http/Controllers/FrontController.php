@@ -72,14 +72,32 @@ class FrontController extends Controller
 
     }
 
-    public function ResearchByCat (Request $request,$id){
+    public function ResearchByCat ($id){
 
-        $article = Article::where('categories_id',$id);
+        $categories = Categorie::all();
+        $testimonials = Testimonial::orderByRaw("RAND()")->get()->take(1);
+        $tags = Tag::all();
+        $articles = Article::where('categories_id',$id)->paginate(3);
 
-        return view('blog');
+        
+
+        return view('Search',compact('testimonials','tags', 'articles', 'categories','commentaires'));
     }
 
-    public function ResearchByTag (Request $request,$id){
-        $articles = Tag::find($id)->articles()->where('tags_id',$id);
+    public function ResearchByTag ($id){
+        
+        $categories = Categorie::all();
+        $testimonials = Testimonial::orderByRaw("RAND()")->get()->take(1);
+        $tags = Tag::all();
+
+        $articles = Tag::find($id)->articles()->where('tags_id',$id)->paginate(3);
+
+        // dd($articles);
+
+        return view('Search',compact('testimonials','tags', 'articles', 'categories'));
+    }
+
+     public function ResearchByTitre (Request $request,$id){
+
     }
 }
