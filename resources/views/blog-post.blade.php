@@ -156,14 +156,14 @@
 						<!-- single testimonial -->
 						<div class="testimonial">
 							<span>‘​‌‘​‌</span>
-							<p>{{$testimonial->contenu}}</p>
+							<p style="color:black">{{$testimonial->contenu}}</p>
 							<div class="client-info">
 								<div class="avatar">
 									<img src="{{Storage::disk('imgClient')->url($testimonial->client->image)}}" alt="{{$testimonial->client->name}}" alt="">
 								</div>
 								<div class="client-name">
-									<h2>{{$testimonial->client->name}}</h2>
-									<p>{{$testimonial->client->company}}</p>
+									<h2 style="color:black">{{$testimonial->client->name}}</h2>
+									<p style="color:black">{{$testimonial->client->company}}</p>
 								</div>
 							</div>
 						</div>
