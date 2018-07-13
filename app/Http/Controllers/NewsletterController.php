@@ -89,6 +89,11 @@ class NewsletterController extends Controller
 
     public function newsletterMail(StoreNewsletter $request){
         
+        $newsletter = new Newsletter;
+        $newsletter->email = $request->newsemail;
+        
+        $newsletter->save();
+        
         Mail::to($request->newsemail)->send(new NewsLetterMail($request));
 
         return redirect()->back();

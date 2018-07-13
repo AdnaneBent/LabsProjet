@@ -54,7 +54,7 @@ class FrontController extends Controller
 
     public  function  contactMail(storeContact  $request){
         Mail::to(User::get())->send(new ContactMail($request));
-    return redirect()->back();
+        return redirect()->back();
     }
 
     public function commentaire(Request $request, $articles_id){
