@@ -25,7 +25,7 @@ class StoreContact extends FormRequest
     {
         return [
             "name"  =>  "required|max:255",
-            "email"  =>  "required|email|unique:users",
+            "email"  =>  "required|email",
             "message" => "required", 
             "subject" => 'required|max:255',
         ];
@@ -36,6 +36,7 @@ class StoreContact extends FormRequest
         return[
             'name.required' => "Il faut mettre votre nom",
             'email.required' => "Il faut une adresse mail valide",
+            'email.email' => "Il faut une adresse mail valide",
             "message.required" => "Il faut un message",
             "subject.required" =>  "Il faut un sujet",
             'subject.max' => "Maximum :max caractères",

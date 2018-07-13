@@ -36,13 +36,13 @@
 					<div class="post-content">
 						<h2 class="post-title">{{$article->titre}}</h2>
 						<div class="post-meta">
-							<a href="">{{$article->user->name}}</a>
-							<a href="">
-									@foreach($article->tags as $tag)
-									{{$tag->name}}
-									@endforeach
-								</a>
-							<a href="">{{count($article->commentaires)}}</a>
+							<a>{{$article->user->name}}</a>
+							<a>
+								@foreach($article->tags as $tag)
+								{{$tag->name}}
+								@endforeach
+							</a>
+							<a>{{count($article->commentaires)}}</a>
 						</div>
 						<p>{{$description = substr($article->contenu, 0, 300)}} ...</p>
 						<a href="{{route('blogShow',['article'=>$article->id])}}" class="read-more">Read More</a>

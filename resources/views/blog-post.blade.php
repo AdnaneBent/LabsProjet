@@ -28,13 +28,13 @@
 						<div class="post-content">
 							<h2 class="post-title">{{$article->titre}}</h2>
 							<div class="post-meta">
-								<a href="">{{$article->user->name}}</a>
-								<a href="">
+								<a>{{$article->user->name}}</a>
+								<a>
 									@foreach($article->tags as $tag)
 									{{$tag->name}}
 									@endforeach
 								</a>	
-								<a href="">{{$article->commentaires->where('validation', 1)->count()}}</a>
+								<a>{{$article->commentaires->where('validation', 1)->count()}}</a>
 							</div>
 							<p>{{$article->contenu}}</p>
 						</div>
